@@ -4,6 +4,7 @@ import Main from '../../pages/mainpage/mainpage';
 import Login from '../../pages/loginpage/loginpage';
 import Residence from '../../pages/residencepage/residencepage';
 import {AppRoutes} from '../../routes';
+import NotFound from '../../pages/notfoundpage/notfoundpage';
 
 type AppSettings = {
   amountOffers: number;
@@ -24,6 +25,10 @@ function App({amountOffers}: AppSettings): JSX.Element {
         <Route
           path={AppRoutes.Residence}
           element={<Residence />}
+        />
+        <Route
+          path='*'
+          element={<NotFound />}
         />
       </Routes>
     </BrowserRouter>
