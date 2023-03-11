@@ -5,18 +5,25 @@ import Login from '../../pages/loginpage/loginpage';
 import Residence from '../../pages/residencepage/residencepage';
 import {AppRoutes} from '../../routes';
 import NotFound from '../../pages/notfoundpage/notfoundpage';
+import {Offer} from '../../types/offer';
 
 type AppSettings = {
   amountOffers: number;
+  offers: Offer[];
 }
 
-function App({amountOffers}: AppSettings): JSX.Element {
+function App({amountOffers, offers}: AppSettings): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutes.Root}
-          element={<Main offers={amountOffers} />}
+          element={
+            <Main
+              offerQuantity={amountOffers}
+              offers={offers}
+            />
+          }
         />
         <Route
           path={AppRoutes.Login}

@@ -1,11 +1,14 @@
-import Offer from '../../components/offer/offer';
 import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
 
+import {Offer} from '../../types/offer';
+import CurrentOffer from '../../components/offer/offer';
+
 type mainProps = {
-  offers: number;
+  offerQuantity: number;
+  offers: Offer[];
 }
 
-function Main({offers} : mainProps): JSX.Element {
+function Main({offerQuantity, offers} : mainProps): JSX.Element {
   return (
     <GlobalWrapper>
       <main className="page__main page__main--index">
@@ -50,7 +53,7 @@ function Main({offers} : mainProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers} places to stay in Amsterdam</b>
+              <b className="places__found">{offerQuantity} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -67,11 +70,11 @@ function Main({offers} : mainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <Offer/>
-                <Offer/>
-                <Offer/>
-                <Offer/>
-                <Offer/>
+                {/*здесь нужен цикл*/}
+                <CurrentOffer myProperty={offers[0]} />
+                <CurrentOffer myProperty={offers[1]} />
+                <CurrentOffer myProperty={offers[2]} />
+                <CurrentOffer myProperty={offers[3]} />
               </div>
             </section>
             <div className="cities__right-section">
