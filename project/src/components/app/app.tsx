@@ -31,7 +31,7 @@ function App({amountOffers, offers}: AppSettings): JSX.Element {
         />
         <Route
           path={AppRoutes.Residence}
-          element={<Residence />}
+          element={<Residence property={ offers[0] } />}
         />
         <Route
           path='*'

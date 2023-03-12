@@ -15,7 +15,7 @@ function OffersList({offers}: OffersListProps): JSX.Element {
 
   return(
     <>
-      { offers.map((offer) => <CurrentOffer key={ offer.id } myProperty= { offer } onMouseEnter={ () => mouseEnterHandler(offer) } onMouseLeave={ mouseLeaveHandler } /> ) }
+      { offers.map((offer): JSX.Element => <CurrentOffer key={ offer.id } myProperty= { offer } onMouseEnter={ () => mouseEnterHandler(offer) } onMouseLeave={ mouseLeaveHandler } /> ) }
     </>
   );
 }
