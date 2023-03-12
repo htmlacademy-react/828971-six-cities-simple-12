@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import {Offer} from '../../types/offer';
 
 type CurrentOfferProps = {
   myProperty: Offer;
+  onMouseEnter: MouseEventHandler<HTMLElement>;
+  onMouseLeave: MouseEventHandler<HTMLElement>;
 }
 
-function CurrentOffer({myProperty}: CurrentOfferProps): JSX.Element {
+
+
+function CurrentOffer({myProperty, onMouseEnter, onMouseLeave}: CurrentOfferProps): JSX.Element {
+
+
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseEnter={ onMouseEnter } onMouseLeave={ onMouseLeave }>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={ myProperty.previewImage } width="260" height="200" alt="Place image"/>

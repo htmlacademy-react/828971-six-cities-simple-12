@@ -1,7 +1,6 @@
 import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
-
 import {Offer} from '../../types/offer';
-import CurrentOffer from '../../components/offer/offer';
+import OffersList from '../../components/offersList/offersList';
 
 type mainProps = {
   offerQuantity: number;
@@ -70,11 +69,7 @@ function Main({offerQuantity, offers} : mainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {/*здесь нужен цикл*/}
-                <CurrentOffer myProperty={offers[0]} />
-                <CurrentOffer myProperty={offers[1]} />
-                <CurrentOffer myProperty={offers[2]} />
-                <CurrentOffer myProperty={offers[3]} />
+                <OffersList offers={offers} />
               </div>
             </section>
             <div className="cities__right-section">
