@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from 'react';
+import { Link } from 'react-router-dom';
 import {Offer} from '../../types/offer';
 
 type CurrentOfferProps = {
@@ -7,11 +8,7 @@ type CurrentOfferProps = {
   onMouseLeave: MouseEventHandler<HTMLElement>;
 }
 
-
-
 function CurrentOffer({myProperty, onMouseEnter, onMouseLeave}: CurrentOfferProps): JSX.Element {
-
-
   return (
     <article className="cities__card place-card" onMouseEnter={ onMouseEnter } onMouseLeave={ onMouseLeave }>
       <div className="cities__image-wrapper place-card__image-wrapper">
@@ -33,7 +30,9 @@ function CurrentOffer({myProperty, onMouseEnter, onMouseLeave}: CurrentOfferProp
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{ myProperty.title }</a>
+          <Link to={'/offer/' + myProperty.id.toString() }>
+            { myProperty.title }
+          </Link>
         </h2>
         <p className="place-card__type">{ myProperty.type }</p>
       </div>
