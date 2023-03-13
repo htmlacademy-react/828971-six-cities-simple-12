@@ -1,14 +1,14 @@
 import React, {FormEvent, useState} from 'react';
 
 type feedbackSettings = {
-  rating: number,
-  description: string,
-  submitSwitcher: boolean,
+  rating: number;
+  description: string;
+  submitSwitcher: boolean;
 }
 
 type ratingLegend = {
-  title: string,
-  rating: number
+  title: string;
+  rating: number;
 };
 
 const ratingLegend: ratingLegend[] = [
@@ -40,7 +40,7 @@ function FeedbackForm(): JSX.Element {
     submitSwitcher: true
   });
 
-  const onSubmitHandler = (evt: FormEvent) =>  {
+  const onSubmitHandler = (evt: FormEvent) => {
     evt.preventDefault();
     setState({
       rating: 0,
@@ -48,14 +48,14 @@ function FeedbackForm(): JSX.Element {
       submitSwitcher: false});
   };
 
-  const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) =>  {
+  const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setState({...state, rating: +evt.currentTarget.value});
     if (state.description !== null && state.description.length > 50 ) {
       setState({...state, submitSwitcher: false});
     }
   };
 
-  const onChangeTAHandler = (evt: React.ChangeEvent<HTMLTextAreaElement>) =>  {
+  const onChangeTAHandler = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = evt.currentTarget.value;
     if (text.length > 50 && state.rating ) {
       setState({...state, submitSwitcher: false});
@@ -69,18 +69,16 @@ function FeedbackForm(): JSX.Element {
     <form className="reviews__form form" action="#" method="post" onSubmit={ onSubmitHandler }>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        { ratingLegend.map((star: ratingLegend): JSX.Element => {
-          return (
-            <>
-              <input className="form__rating-input visually-hidden" name="rating" value={ star.rating.toString() } id={ star.rating.toString() + "-stars"} type="radio" onChange={ onChangeHandler }/>
-              <label htmlFor={ star.rating.toString() + "-stars"} className="reviews__rating-label form__rating-label" title={ star.title }>
-                <svg className="form__star-image" width="37" height="33">
-                  <use xlinkHref="#icon-star"></use>
-                </svg>
-              </label>
-            </>
-          )
-        })}
+        { ratingLegend.map((star: ratingLegend): JSX.Element => (
+          <>
+            <input className="form__rating-input visually-hidden" name="rating" value={ star.rating.toString() } id={`${star.rating.toString()}-stars`} type="radio" onChange={ onChangeHandler }/>
+            <label htmlFor={`${star.rating.toString()}-stars`} className="reviews__rating-label form__rating-label" title={ star.title }>
+              <svg className="form__star-image" width="37" height="33">
+                <use xlinkHref="#icon-star"></use>
+              </svg>
+            </label>
+          </>
+        ))}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={ onChangeTAHandler }></textarea>
       <div className="reviews__button-wrapper">
@@ -91,7 +89,7 @@ function FeedbackForm(): JSX.Element {
         <button className="reviews__submit form__submit button" type="submit" disabled={ state.submitSwitcher }>Submit</button>
       </div>
     </form>
-  )
+  );
 }
 
 
