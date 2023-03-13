@@ -30,7 +30,7 @@ function CurrentOffer({myProperty, onMouseEnter, onMouseLeave}: CurrentOfferProp
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={'/offer/' + myProperty.id.toString() }>
+          <Link to={`/offer/'${myProperty.id.toString()}`}>
             { myProperty.title }
           </Link>
         </h2>
