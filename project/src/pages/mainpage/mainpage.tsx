@@ -1,6 +1,6 @@
 import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
 import {Offer} from '../../types/offer';
-import OffersList from '../../components/offersList/offersList';
+import OffersList from '../../components/mainpage/offersList/offersList';
 
 type mainProps = {
   offerQuantity: number;

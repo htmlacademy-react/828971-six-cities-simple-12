@@ -6,13 +6,15 @@ import Residence from '../../pages/residencepage/residencepage';
 import {AppRoutes} from '../../routes';
 import NotFound from '../../pages/notfoundpage/notfoundpage';
 import {Offer} from '../../types/offer';
+import {Feedback} from '../../types/feedback';
 
 type AppSettings = {
   amountOffers: number;
   offers: Offer[];
+  feedbacks: Feedback[];
 }
 
-function App({amountOffers, offers}: AppSettings): JSX.Element {
+function App({ amountOffers, offers, feedbacks }: AppSettings): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -31,7 +33,12 @@ function App({amountOffers, offers}: AppSettings): JSX.Element {
         />
         <Route
           path={AppRoutes.Residence}
-          element={<Residence property={ offers[0] } />}
+          element={
+            <Residence
+              property={ offers[1] }
+              feedbacks={ feedbacks }
+            />
+          }
         />
         <Route
           path='*'

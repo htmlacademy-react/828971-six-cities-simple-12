@@ -1,7 +1,7 @@
 // import React from 'react';
 import React, { useState } from 'react';
 import CurrentOffer from '../offer/offer';
-import {Offer} from '../../types/offer';
+import {Offer} from '../../../types/offer';
 
 type OffersListProps = {
   offers: Offer[];
@@ -15,7 +15,14 @@ function OffersList({offers}: OffersListProps): JSX.Element {
 
   return(
     <>
-      { offers.map((offer): JSX.Element => <CurrentOffer key={ offer.id } myProperty= { offer } onMouseEnter={ () => mouseEnterHandler(offer) } onMouseLeave={ mouseLeaveHandler } /> ) }
+      { offers.map((offer: Offer): JSX.Element => (
+        <CurrentOffer
+          key={ offer.id }
+          myProperty= { offer }
+          onMouseEnter={ () => mouseEnterHandler(offer) }
+          onMouseLeave={ mouseLeaveHandler }
+        />
+      ))}
     </>
   );
 }

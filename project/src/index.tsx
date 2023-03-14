@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import {offers} from './mocks/offers';
+import {feedbacks} from './mocks/feedbacks';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -17,6 +18,7 @@ root.render(
     <App
       amountOffers={Settings.AmountOffers}
       offers={offers}
+      feedbacks={feedbacks}
     />
   </React.StrictMode>,
 );
