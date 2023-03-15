@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Images} from '../../../types/images';
 
 type GalleryProps = {
   pics: string[];

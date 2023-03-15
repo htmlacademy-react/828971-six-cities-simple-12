@@ -12,19 +12,19 @@ export type City = {
 };
 
 export type Offer = {
-  city?: City;
+  city: City;
   previewImage: string;
   images: string[];
   title: string;
   isPremium: boolean;
-  rating?: number;
+  rating: number;
   type: string;
   bedrooms: number;
   maxAdults: number;
   price: number;
   goods: string[];
   host: User;
-  description?: string;
-  location?: Location;
+  description: string;
+  location: Location;
   id: number;
 };

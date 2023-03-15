@@ -1,5 +1,6 @@
 import React from 'react';
 import {Feedback} from '../../../types/feedback';
+import RatingStars from '../../common/ratingStars/ratingStars';
 
 type FeedbacksListProps = {
   feedbacks: Feedback[];
@@ -25,12 +26,7 @@ function FeedbacksList( {feedbacks}: FeedbacksListProps): JSX.Element {
             </span>
           </div>
           <div className="reviews__info">
-            <div className="reviews__rating rating">
-              <div className="reviews__stars rating__stars">
-                <span style={{width: '80%'}}></span>
-                <span className="visually-hidden">Rating</span>
-              </div>
-            </div>
+            <RatingStars rating={ feedback.rating } specifyClassWord={ 'reviews' } />
             <p className="reviews__text">
               { feedback.comment }
             </p>

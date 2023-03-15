@@ -1,6 +1,5 @@
 import {User} from './user';
 
-
 export type Feedback = {
   id: number;
   user: User;

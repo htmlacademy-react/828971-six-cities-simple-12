@@ -1,6 +1,7 @@
 import React, { MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 import {Offer} from '../../../types/offer';
+import RatingStars from '../ratingStars/ratingStars';
 
 type CurrentOfferProps = {
   myProperty: Offer;
@@ -23,12 +24,7 @@ function CurrentOffer({myProperty, onMouseEnter, onMouseLeave}: CurrentOfferProp
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <RatingStars rating={ myProperty.rating } specifyClassWord={ 'place-card' } />
         <h2 className="place-card__name">
           <Link to={`/offer/'${myProperty.id.toString()}`}>
             { myProperty.title }

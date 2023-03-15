@@ -35,7 +35,8 @@ function App({ amountOffers, offers, feedbacks }: AppSettings): JSX.Element {
           path={AppRoutes.Residence}
           element={
             <Residence
-              property={ offers[1] }
+              offers={ offers }
+              property={ offers[2] }
               feedbacks={ feedbacks }
             />
           }
