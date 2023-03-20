@@ -1,10 +1,5 @@
 import {User} from './user';
-
-export type Location = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
+import {Location} from './location';
 
 export type City = {
   name: string;

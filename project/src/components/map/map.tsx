@@ -1,54 +1,32 @@
-import {useEffect, useRef, useState} from 'react';
-import L, {Map} from 'leaflet';
+import {useEffect, useRef} from 'react';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {Offer} from '../../types/offer';
+import useMap from '../../hooks/usemap/usemap';
 
 type mapProps = {
   offers: Offer[];
 }
+const myIcon = L.icon({
+  iconUrl: '/img/pin.svg',
+  iconSize: [30, 40],
+  iconAnchor: [15, 40],
+});
 
 function DrawMap( {offers} : mapProps): JSX.Element {
-  const [myMap, setMyMap] = useState< Map | null >(null);
+  const City = offers[0].city.location;
   const mapRef = useRef(null);
-  const isRenderedRef = useRef(false);
+  const map = useMap(mapRef, City);
 
   useEffect( () => {
-
-    if (mapRef.current !== null && !isRenderedRef.current) {
-      const instance = L.map(mapRef.current, {
-        center: {
-          lat: 52.3909553943508,
-          lng: 4.85309666406198,
-        },
-        zoom: 11,
-      });
-
-      L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-        {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        },
-      )
-        .addTo(instance);
-
-      setMyMap(instance);
-      isRenderedRef.current = true;
-    }
-  }, [mapRef]);
-
-  useEffect( () => {
-    if(myMap !== null) {
+    if(map !== null) {
       offers.map((offer: Offer) => {
-        const myIcon = L.icon({
-          iconUrl: '/img/pin.svg',
-          iconSize: [30, 40],
-          iconAnchor: [15, 40],
-        });
-        L.marker([offer.city.location.latitude, offer.city.location.longitude], {icon: myIcon})
-          .addTo(myMap);
+
+        L.marker([offer.location.latitude, offer.location.longitude], {icon: myIcon})
+          .addTo(map);
       });
     }
-  }, [myMap, offers]);
+  }, [map, offers]);
 
   return (
     <section

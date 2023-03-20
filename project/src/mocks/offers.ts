@@ -5,9 +5,9 @@ export const offers: Offer[] = [
     'city': {
       'name': 'Amsterdam',
       'location': {
-        'latitude': 52.3909553943508,
-        'longitude': 4.85309666406198,
-        'zoom': 13
+        'latitude': 52.37454,
+        'longitude': 4.897976,
+        'zoom': 12
       }
     },
     'previewImage': 'https://12.react.pages.academy/static/hotel/3.jpg',
@@ -45,8 +45,8 @@ export const offers: Offer[] = [
     },
     'description': 'Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.',
     'location': {
-      'latitude': 48.862610000000004,
-      'longitude': 2.369499,
+      'latitude': 52.3909553943508,
+      'longitude': 4.85309666406198,
       'zoom': 16
     },
     'id': 1
@@ -55,8 +55,8 @@ export const offers: Offer[] = [
     'city': {
       'name': 'Amsterdam',
       'location': {
-        'latitude': 52.3609553943508,
-        'longitude': 4.85309666406198,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13
       }
     },
@@ -98,8 +98,8 @@ export const offers: Offer[] = [
     },
     'description': 'Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.',
     'location': {
-      'latitude': 51.214402,
-      'longitude': 6.764314000000001,
+      'latitude': 52.3609553943508,
+      'longitude': 4.85309666406198,
       'zoom': 16
     },
     'id': 83
@@ -108,8 +108,8 @@ export const offers: Offer[] = [
     'city': {
       'name': 'Amsterdam',
       'location': {
-        'latitude': 52.3909553943508,
-        'longitude': 4.929309666406198,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13
       }
     },
@@ -153,8 +153,8 @@ export const offers: Offer[] = [
     },
     'description': 'Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.',
     'location': {
-      'latitude': 50.947361,
-      'longitude': 6.9799739999999995,
+      'latitude': 52.3909553943508,
+      'longitude': 4.929309666406198,
       'zoom': 16
     },
     'id': 91
@@ -163,8 +163,8 @@ export const offers: Offer[] = [
     'city': {
       'name': 'Amsterdam',
       'location': {
-        'latitude': 52.3809553943508,
-        'longitude': 4.939309666406198,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13
       }
     },
@@ -207,8 +207,8 @@ export const offers: Offer[] = [
     },
     'description': 'This is a place for dreamers to reset, reflect, and create. Designed with a "slow" pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.',
     'location': {
-      'latitude': 48.834610000000005,
-      'longitude': 2.364499,
+      'latitude': 52.3809553943508,
+      'longitude': 4.939309666406198,
       'zoom': 16
     },
     'id': 97
