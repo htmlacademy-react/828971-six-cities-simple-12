@@ -2,7 +2,7 @@ import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
 import {Offer} from '../../types/offer';
 import OffersList from '../../components/common/offersList/offersList';
 import MainNav from '../../components/mainpage/mainNav/mainNav';
-import DrawMap from '../../components/map/map';
+import Map from '../../components/map/map';
 
 type mainProps = {
   offerQuantity: number;
@@ -40,7 +40,7 @@ function Main({offerQuantity, offers} : mainProps): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section">
-              <DrawMap offers={offers} />
+              <Map offers={offers} />
             </div>
           </div>
         </div>

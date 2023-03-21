@@ -13,7 +13,7 @@ const myIcon = L.icon({
   iconAnchor: [15, 40],
 });
 
-function DrawMap( {offers} : mapProps): JSX.Element {
+function Map( {offers} : mapProps): JSX.Element {
   const City = offers[0].city.location;
   const mapRef = useRef(null);
   const map = useMap(mapRef, City);
@@ -38,4 +38,4 @@ function DrawMap( {offers} : mapProps): JSX.Element {
   );
 }
 
-export default DrawMap;
+export default Map;
