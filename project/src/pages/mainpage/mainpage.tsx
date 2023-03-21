@@ -1,8 +1,8 @@
 import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
 import {Offer} from '../../types/offer';
-import OffersList from '../../components/common/offersList/offersList';
+import OffersList from '../../components/common/offerStuff/offersList/offersList';
 import MainNav from '../../components/mainpage/mainNav/mainNav';
-import Map from '../../components/map/map';
+import Map from '../../components/map/mainpageMap/map';
 
 type mainProps = {
   offerQuantity: number;

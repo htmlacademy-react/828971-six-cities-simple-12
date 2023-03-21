@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
-import {Offer} from '../../../types/offer';
-import RatingStars from '../ratingStars/ratingStars';
+import {Offer} from '../../../../types/offer';
+import RatingStars from '../../ratingStars/ratingStars';
 
 type CurrentOfferProps = {
   myProperty: Offer;
