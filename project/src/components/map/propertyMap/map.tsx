@@ -1,8 +1,8 @@
-import {useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {Offer} from '../../types/offer';
-import useMap from '../../hooks/usemap/usemap';
+import {Offer} from '../../../types/offer';
+import useMap from '../../../hooks/usemap/usemap';
 
 type mapProps = {
   offers: Offer[];
@@ -13,7 +13,7 @@ const myIcon = L.icon({
   iconAnchor: [15, 40],
 });
 
-function DrawMap( {offers} : mapProps): JSX.Element {
+function Map( {offers} : mapProps): JSX.Element {
   const City = offers[0].city.location;
   const mapRef = useRef(null);
   const map = useMap(mapRef, City);
@@ -30,7 +30,7 @@ function DrawMap( {offers} : mapProps): JSX.Element {
 
   return (
     <section
-      className="cities__map map"
+      className="property__map map"
       style={{height: '500px'}}
       ref={mapRef}
     >
@@ -38,4 +38,4 @@ function DrawMap( {offers} : mapProps): JSX.Element {
   );
 }
 
-export default DrawMap;
+export default Map;
