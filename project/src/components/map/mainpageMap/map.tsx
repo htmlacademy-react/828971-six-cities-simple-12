@@ -1,32 +1,49 @@
 import {useEffect, useRef} from 'react';
-import L from 'leaflet';
+import L, { Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {Offer} from '../../../types/offer';
 import useMap from '../../../hooks/usemap/usemap';
+import {useAppSelector} from '../../../hooks/useGlobalState';
+import {Location} from '../../../types/location';
 
-type mapProps = {
-  offers: Offer[];
-}
+type MapProps = {
+  city: Location;
+  // offers: Offer[];
+  // selectedOffer?: Offer | null;
+  // mapClassName: string;
+};
+
 const myIcon = L.icon({
   iconUrl: '/img/pin.svg',
   iconSize: [30, 40],
   iconAnchor: [15, 40],
 });
 
-function Map( {offers} : mapProps): JSX.Element {
-  const City = offers[0].city.location;
+function Map( {city} : MapProps): JSX.Element {
+  const currentOffers = useAppSelector((state) => state.offers);
   const mapRef = useRef(null);
-  const map = useMap(mapRef, City);
 
-  useEffect( () => {
-    if(map !== null) {
-      offers.map((offer: Offer) => {
+  const map = useMap(mapRef, city);
 
-        L.marker([offer.location.latitude, offer.location.longitude], {icon: myIcon})
-          .addTo(map);
+  useEffect(() => {
+    const markers: Marker[] = [];
+    if (map) {
+      currentOffers.forEach((offer) => {
+        const marker = new L.Marker([offer.location.latitude, offer.location.longitude], {icon: myIcon});
+        markers.push(marker);
+
+        marker.addTo(map);
       });
+
+      return () => {
+        map && (
+          markers.forEach((marker) => {
+            marker.removeFrom(map);
+          })
+        );
+      };
     }
-  }, [map, offers]);
+
+  }, [map, currentOffers]);
 
   return (
     <section
