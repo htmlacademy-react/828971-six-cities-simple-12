@@ -9,22 +9,18 @@ import {Offer} from '../../types/offer';
 import {Feedback} from '../../types/feedback';
 
 type AppSettings = {
-  amountOffers: number;
   offers: Offer[];
   feedbacks: Feedback[];
 }
 
-function App({ amountOffers, offers, feedbacks }: AppSettings): JSX.Element {
+function App({ offers, feedbacks }: AppSettings): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutes.Root}
           element={
-            <Main
-              offerQuantity={amountOffers}
-              offers={offers}
-            />
+            <Main/>
           }
         />
         <Route

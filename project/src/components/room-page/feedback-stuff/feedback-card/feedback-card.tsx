@@ -1,4 +1,4 @@
-import RatingStars from '../../../common/ratingStars/ratingStars';
+import RatingStars from '../../../common/rating-stars/rating-stars';
 import React from 'react';
 import {Feedback} from '../../../../types/feedback';
 

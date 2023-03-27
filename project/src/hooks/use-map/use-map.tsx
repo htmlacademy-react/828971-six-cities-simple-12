@@ -3,12 +3,10 @@ import L, {Map} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {Location} from '../../types/location';
 
-// type mapHookProps = {
-//   mapRef: MutableRefObject<HTMLElement | null>;
-//   centralPoint: Location;
-// }
-
-function useMap(mapRef: MutableRefObject<HTMLElement | null>, centralPoint: Location): Map | null {
+function useMap(
+  mapRef: MutableRefObject<HTMLElement | null>,
+  centralPoint: Location
+): Map | null {
   const [map, setMap] = useState< Map | null >(null);
   const isRenderedRef = useRef(false);
 
@@ -32,7 +30,8 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, centralPoint: Loca
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, map, centralPoint]);
+
+  }, [mapRef, centralPoint]);
 
   return map;
 }

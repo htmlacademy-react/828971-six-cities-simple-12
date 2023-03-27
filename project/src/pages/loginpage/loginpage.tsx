@@ -1,4 +1,4 @@
-import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
+import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 
 function Login(): JSX.Element {
   return (
