@@ -1,5 +1,4 @@
 import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
-import {Offer} from '../../types/offer';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
 import MainNav from '../../components/mainpage/main-nav/main-nav';
 import Map from '../../components/map/mainpage-map/map';
@@ -7,10 +6,6 @@ import {useAppDispatch, useAppSelector} from '../../hooks/use-global-state';
 import {useEffect} from 'react';
 import {changeCityAction, fillOffersAction} from '../../store/action';
 import {State} from '../../types/state';
-
-type mainProps = {
-  offers: Offer[];
-}
 
 type City = {
   name: string;
@@ -51,19 +46,19 @@ const cities: City[] = [
   },
 ];
 
-function Main({offers} : mainProps): JSX.Element {
-  const currentCity = useAppSelector((state: State) => state.city);
-  const currentOffers = useAppSelector((state: State) => state.offers);
+function Main(): JSX.Element {
+  const { city, offers }: State = useAppSelector((state) => state);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fillOffersAction());
-  }, [currentCity]);
+  }, [city]);
 
-  const onClickHandler = (city: string): void => {
-    dispatch(changeCityAction(city));
+  const onClickHandler = (chosenCity: string): void => {
+    dispatch(changeCityAction(chosenCity));
     cities.forEach((item) => {
-      (item.name === city) ? item.isActive = true : item.isActive = false;
+      (item.name === chosenCity) ? item.isActive = true : item.isActive = false;
     });
   };
 
@@ -76,7 +71,7 @@ function Main({offers} : mainProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{ currentOffers.length } places to stay in {currentCity}</b>
+              <b className="places__found">{ offers.length } places to stay in {city}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -94,11 +89,11 @@ function Main({offers} : mainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers} />
+                <OffersList />
               </div>
             </section>
             <div className="cities__right-section">
-              <Map city={ currentOffers[0].city.location }/>
+              <Map city={ offers[0].city.location }/>
             </div>
           </div>
         </div>

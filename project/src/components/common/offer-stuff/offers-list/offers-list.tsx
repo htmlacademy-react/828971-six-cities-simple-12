@@ -4,11 +4,7 @@ import {Offer} from '../../../../types/offer';
 import {useAppSelector} from '../../../../hooks/use-global-state';
 import {State} from '../../../../types/state';
 
-type OffersListProps = {
-  offers: Offer[];
-}
-
-function OffersList({offers}: OffersListProps): JSX.Element {
+function OffersList(): JSX.Element {
   const currentOffers = useAppSelector((state: State) => state.offers);
   const [, setCardHovered] = useState<Offer|null>(null);
   const [iterable, setIterable] = useState<Offer[]>(currentOffers);

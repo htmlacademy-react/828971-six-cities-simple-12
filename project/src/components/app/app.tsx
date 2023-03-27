@@ -20,9 +20,7 @@ function App({ offers, feedbacks }: AppSettings): JSX.Element {
         <Route
           path={AppRoutes.Root}
           element={
-            <Main
-              offers={offers}
-            />
+            <Main/>
           }
         />
         <Route
