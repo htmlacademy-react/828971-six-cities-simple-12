@@ -6,6 +6,7 @@ import Map from '../../components/map/mainpage-map/map';
 import {useAppDispatch, useAppSelector} from '../../hooks/use-global-state';
 import {useEffect} from 'react';
 import {changeCityAction, fillOffersAction} from '../../store/action';
+import {State} from '../../types/state';
 
 type mainProps = {
   offers: Offer[];
@@ -51,8 +52,8 @@ const cities: City[] = [
 ];
 
 function Main({offers} : mainProps): JSX.Element {
-  const currentCity = useAppSelector((state) => state.city);
-  const currentOffers = useAppSelector((state) => state.offers);
+  const currentCity = useAppSelector((state: State) => state.city);
+  const currentOffers = useAppSelector((state: State) => state.offers);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
