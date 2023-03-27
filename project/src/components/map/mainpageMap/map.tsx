@@ -7,9 +7,6 @@ import {Location} from '../../../types/location';
 
 type MapProps = {
   city: Location;
-  // offers: Offer[];
-  // selectedOffer?: Offer | null;
-  // mapClassName: string;
 };
 
 const myIcon = L.icon({
@@ -42,8 +39,13 @@ function Map( {city} : MapProps): JSX.Element {
         );
       };
     }
-
   }, [map, currentOffers]);
+
+  useEffect(() => {
+    if (map) {
+      map.panTo(L.latLng(city.latitude, city.longitude));
+    }
+  }, [currentOffers]);
 
   return (
     <section
