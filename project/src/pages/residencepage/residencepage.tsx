@@ -1,14 +1,14 @@
-import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
+import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 import {Offer} from '../../types/offer';
 import React from 'react';
-import FeedbackForm from '../../components/roomPage/feedbackStuff/feedbackForm/feedbackForm';
-import FeedbacksList from '../../components/roomPage/feedbackStuff/feedbackList/feedbackList';
+import FeedbackForm from '../../components/room-page/feedback-stuff/feedback-form/feedback-form';
+import FeedbacksList from '../../components/room-page/feedback-stuff/feedback-list/feedback-list';
 import {Feedback} from '../../types/feedback';
-import RoomGallery from '../../components/roomPage/roomGallery/roomGallery';
-import RoomInfo from '../../components/roomPage/roomInfo/roomInfo';
-import HostBlock from '../../components/roomPage/hostBlock/hostBlock';
-import OffersList from '../../components/common/offerStuff/offersList/offersList';
-import Map from '../../components/map/propertyMap/map';
+import RoomGallery from '../../components/room-page/room-gallery/roomGallery';
+import RoomInfo from '../../components/room-page/room-info/room-info';
+import HostBlock from '../../components/room-page/host-block/host-block';
+import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
+import Map from '../../components/map/property-map/map';
 
 type buildingProps = {
   offers: Offer[];

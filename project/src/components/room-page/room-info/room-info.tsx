@@ -1,6 +1,6 @@
 import React from 'react';
 import {Offer} from '../../../types/offer';
-import RatingStars from '../../common/ratingStars/ratingStars';
+import RatingStars from '../../common/rating-stars/rating-stars';
 
 type RoomInfoProps = {
   property: Offer;

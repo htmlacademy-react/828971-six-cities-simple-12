@@ -1,9 +1,9 @@
-import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
+import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 import {Offer} from '../../types/offer';
-import OffersList from '../../components/common/offerStuff/offersList/offersList';
-import MainNav from '../../components/mainpage/mainNav/mainNav';
-import Map from '../../components/map/mainpageMap/map';
-import {useAppDispatch, useAppSelector} from '../../hooks/useGlobalState';
+import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
+import MainNav from '../../components/mainpage/main-nav/main-nav';
+import Map from '../../components/map/mainpage-map/map';
+import {useAppDispatch, useAppSelector} from '../../hooks/use-global-state';
 import {useEffect} from 'react';
 import {changeCityAction, fillOffersAction} from '../../store/action';
 
@@ -79,12 +79,13 @@ function Main({offers} : mainProps): JSX.Element {
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
-                  Popular
+                  &nbsp;Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                <ul className="places__options places__options--custom places__options--opened">
+                {/*places__options--opened*/}
+                <ul className="places__options places__options--custom">
                   <li className="places__option places__option--active" tabIndex={0}>Popular</li>
                   <li className="places__option" tabIndex={0}>Price: low to high</li>
                   <li className="places__option" tabIndex={0}>Price: high to low</li>
