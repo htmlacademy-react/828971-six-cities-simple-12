@@ -8,15 +8,15 @@ import RoomGallery from '../../components/room-page/room-gallery/roomGallery';
 import RoomInfo from '../../components/room-page/room-info/room-info';
 import HostBlock from '../../components/room-page/host-block/host-block';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
-import Map from '../../components/map/property-map/map';
+import Map from '../../components/map/map';
+
 
 type buildingProps = {
-  offers: Offer[];
   property: Offer;
   feedbacks: Feedback[];
 }
 
-function Residence({ offers, property, feedbacks } : buildingProps): JSX.Element {
+function Residence({ property, feedbacks } : buildingProps): JSX.Element {
 
   return (
     <GlobalWrapper>
@@ -33,7 +33,7 @@ function Residence({ offers, property, feedbacks } : buildingProps): JSX.Element
               </section>
             </div>
           </div>
-          <Map offers={offers} />
+          <Map mapClassName={'property__map'}/>
         </section>
         <div className="container">
           <section className="near-places places">

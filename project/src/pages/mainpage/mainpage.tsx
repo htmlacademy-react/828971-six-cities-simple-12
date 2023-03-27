@@ -1,50 +1,11 @@
 import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
 import MainNav from '../../components/mainpage/main-nav/main-nav';
-import Map from '../../components/map/mainpage-map/map';
+import Map from '../../components/map/map';
 import {useAppDispatch, useAppSelector} from '../../hooks/use-global-state';
 import {useEffect} from 'react';
-import {changeCityAction, fillOffersAction} from '../../store/action';
+import {fillOffersAction} from '../../store/action';
 import {State} from '../../types/state';
-
-type City = {
-  name: string;
-  anchor: string;
-  isActive: boolean;
-};
-
-const cities: City[] = [
-  {
-    name: 'Paris',
-    anchor: '#paris',
-    isActive: true,
-  },
-  {
-    name: 'Cologne',
-    anchor: '#cologne',
-    isActive: false,
-  },
-  {
-    name: 'Brussels',
-    anchor: '#brussels',
-    isActive: false,
-  },
-  {
-    name: 'Amsterdam',
-    anchor: '#amsterdam',
-    isActive: false,
-  },
-  {
-    name: 'Hamburg',
-    anchor: '#hamburg',
-    isActive: false,
-  },
-  {
-    name: 'Dusseldorf',
-    anchor: '#dusseldorf',
-    isActive: false,
-  },
-];
 
 function Main(): JSX.Element {
   const { city, offers }: State = useAppSelector((state) => state);
@@ -55,18 +16,11 @@ function Main(): JSX.Element {
     dispatch(fillOffersAction());
   }, [city]);
 
-  const onClickHandler = (chosenCity: string): void => {
-    dispatch(changeCityAction(chosenCity));
-    cities.forEach((item) => {
-      (item.name === chosenCity) ? item.isActive = true : item.isActive = false;
-    });
-  };
-
   return (
     <GlobalWrapper>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <MainNav cities={cities} onClickHandler={onClickHandler} />
+        <MainNav/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -93,7 +47,7 @@ function Main(): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section">
-              <Map city={ offers[0].city.location }/>
+              <Map mapClassName={'cities__map'}/>
             </div>
           </div>
         </div>
