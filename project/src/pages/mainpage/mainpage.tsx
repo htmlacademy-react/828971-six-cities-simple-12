@@ -1,20 +1,38 @@
 import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
 import MainNav from '../../components/mainpage/main-nav/main-nav';
-import Map from '../../components/map/map';
+import { Map } from '../../components/map/map';
 import {useAppDispatch, useAppSelector} from '../../hooks/use-global-state';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {fillOffersAction} from '../../store/action';
 import {State} from '../../types/state';
+import FilterOffers from '../../components/mainpage/filter-offers/filter-offers';
+import {Option} from '../../types/option';
+import {DEFAULT_OPTION} from '../../constants';
+import {Offer} from '../../types/offer';
 
 function Main(): JSX.Element {
   const { city, offers }: State = useAppSelector((state) => state);
+  const [activeOption, setActiveOption] = useState<Option>(DEFAULT_OPTION);
+  const [filteredOffers, setFilteredOffers] = useState<Offer[]>(offers);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fillOffersAction());
   }, [city]);
+
+  useEffect(() => {
+    if(activeOption.cb) {
+      setFilteredOffers(offers.slice().sort(activeOption.cb));
+    } else {
+      setFilteredOffers(offers);
+    }
+  }, [activeOption, offers]);
+
+  const onOptsMouseHandler = (option: Option) => {
+    setActiveOption(option);
+  };
 
   return (
     <GlobalWrapper>
@@ -26,24 +44,9 @@ function Main(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{ offers.length } places to stay in {city}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  &nbsp;Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                {/*places__options--opened*/}
-                <ul className="places__options places__options--custom">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
+              <FilterOffers activeOption={ activeOption } setOptionCB={ onOptsMouseHandler }/>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList />
+                <OffersList offers={ filteredOffers }/>
               </div>
             </section>
             <div className="cities__right-section">

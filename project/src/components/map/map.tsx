@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import L, {Marker} from 'leaflet';
 import cn from 'classnames';
 import 'leaflet/dist/leaflet.css';
@@ -8,11 +8,12 @@ import {Location} from '../../types/location';
 import {useAppSelector} from '../../hooks/use-global-state';
 import {State} from '../../types/state';
 
-type mapProps = {
+type MapProps = {
   mapClassName: string;
 }
 
-function Map({mapClassName} : mapProps): JSX.Element {
+//колыбель функционального компонента - учимся пользоваться FC
+export const Map: FC<MapProps> = ({mapClassName}) => {
   const currentOffers = useAppSelector((state: State) => state.offers);
   const mapCenter: Location = currentOffers[0].city.location;
   const mapRef = useRef(null);
@@ -40,10 +41,9 @@ function Map({mapClassName} : mapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      map.setView([mapCenter.latitude, mapCenter.longitude]);
-      if(mapCenter.zoom !== map.getZoom()) {
-        map.setZoom(mapCenter.zoom);
-      }
+      map.setView([mapCenter.latitude, mapCenter.longitude], mapCenter.zoom);
+      // map.panTo([mapCenter.latitude, mapCenter.longitude]);
+      // map.setZoom(mapCenter.zoom);
     }
   }, [currentOffers]);
 
@@ -55,6 +55,4 @@ function Map({mapClassName} : mapProps): JSX.Element {
     >
     </section>
   );
-}
-
-export default Map;
+};

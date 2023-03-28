@@ -20,13 +20,8 @@ function MainNav(): JSX.Element {
             <li className="locations__item" key={ city }>
               <Link
                 to={`#${city.toLowerCase()}`}
-                className={`
-                locations__item-link tabs__item
-                ${ city === actualCity ? ' tabs__item--active' : ''}
-                `}
-                onClick={
-                  () => onClickHandler(city)
-                }
+                className={`locations__item-link tabs__item ${ city === actualCity ? ' tabs__item--active' : ''}`}
+                onClick={ () => onClickHandler(city) }
               >
                 <span>{ city }</span>
               </Link>

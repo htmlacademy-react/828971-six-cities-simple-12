@@ -1,17 +1,17 @@
 import React, {FormEvent, Fragment, useState} from 'react';
 
-type feedbackSettings = {
+type FeedbackSettings = {
   rating: number;
   description: string;
   submitSwitcher: boolean;
 }
 
-type ratingLegend = {
+type RatingLegend = {
   title: string;
   rating: number;
 };
 
-const ratingLegend: ratingLegend[] = [
+const ratingLegend: RatingLegend[] = [
   {
     title: 'perfect',
     rating: 5
@@ -34,7 +34,7 @@ const ratingLegend: ratingLegend[] = [
   }];
 
 function FeedbackForm(): JSX.Element {
-  const [state, setState] = useState<feedbackSettings>({
+  const [state, setState] = useState<FeedbackSettings>({
     rating: 0,
     description: '',
     submitSwitcher: true
@@ -69,7 +69,7 @@ function FeedbackForm(): JSX.Element {
     <form className="reviews__form form" action="#" method="post" onSubmit={ onSubmitHandler }>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        { ratingLegend.map((star: ratingLegend): JSX.Element => (
+        { ratingLegend.map((star: RatingLegend): JSX.Element => (
           <Fragment key={ star.title }>
             <input className="form__rating-input visually-hidden" name="rating" value={ star.rating.toString() } id={`${star.rating.toString()}-stars`} type="radio" onChange={ onChangeHandler }/>
             <label htmlFor={`${star.rating.toString()}-stars`} className="reviews__rating-label form__rating-label" title={ star.title }>

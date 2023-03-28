@@ -4,19 +4,21 @@ import React from 'react';
 import FeedbackForm from '../../components/room-page/feedback-stuff/feedback-form/feedback-form';
 import FeedbacksList from '../../components/room-page/feedback-stuff/feedback-list/feedback-list';
 import {Feedback} from '../../types/feedback';
-import RoomGallery from '../../components/room-page/room-gallery/roomGallery';
+import RoomGallery from '../../components/room-page/room-gallery/room-gallery';
 import RoomInfo from '../../components/room-page/room-info/room-info';
 import HostBlock from '../../components/room-page/host-block/host-block';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
-import Map from '../../components/map/map';
+import { Map } from '../../components/map/map';
+import {useAppSelector} from '../../hooks/use-global-state';
 
 
-type buildingProps = {
+type ResidenceProps = {
   property: Offer;
   feedbacks: Feedback[];
 }
 
-function Residence({ property, feedbacks } : buildingProps): JSX.Element {
+function Residence({ property, feedbacks } : ResidenceProps): JSX.Element {
+  const offers: Offer[] = useAppSelector((state) => state.offers);
 
   return (
     <GlobalWrapper>
@@ -39,7 +41,7 @@ function Residence({ property, feedbacks } : buildingProps): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList />
+              <OffersList offers={offers}/>
             </div>
           </section>
         </div>

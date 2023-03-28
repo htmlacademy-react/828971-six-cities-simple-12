@@ -1,5 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {changeCityAction, fillOffersAction} from './action';
+// import {changeCityAction, fillOffersAction, sortOffersAction} from './action';
 import {offers} from '../mocks/offers';
 import {DEFAULT_CITY} from '../constants';
 
@@ -16,6 +17,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(fillOffersAction, (state) => {
       state.offers = offers.slice().filter((offer) => offer.city.name === state.city);
     });
+  // .addCase(sortOffersAction, (state) => {
+  //   state.offers = state.offers.sort()
+  // });
 });
 
 export { reducer };
