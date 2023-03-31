@@ -1,11 +1,14 @@
 import React, {FC, useEffect, useRef} from 'react';
-import L, {Marker} from 'leaflet';
+import {Marker} from 'leaflet';
 import cn from 'classnames';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/use-map/use-map';
-import {DEFAULT_ICON, MAP_HEIGHT} from '../../constants';
+// import {ACTIVE_ICON, DEFAULT_ICON, MAP_HEIGHT} from '../../constants';
+import {MAP_HEIGHT} from '../../constants';
 import {Location} from '../../types/location';
 import {Offer} from '../../types/offer';
+import {useAppSelector} from '../../hooks/use-global-state';
+import {createMarkers} from '../../utils';
 
 type MapProps = {
   mapClassName: string;
@@ -14,17 +17,19 @@ type MapProps = {
 
 //колыбель функционального компонента - учимся пользоваться FC
 export const Map: FC<MapProps> = ({mapClassName, offers}) => {
+  const activeOffer: Offer | null = useAppSelector((state) => state.activeOffer);
   const mapCenter: Location = offers[0].city.location;
   const mapRef = useRef(null);
 
   const map = useMap(mapRef, mapCenter);
 
+
+  //toDo можно ли сделать вменяемое выделение одного маркера без перерисовки вообще всех маркеров?
   useEffect(() => {
     const markers: Marker[] = [];
     if (map) {
-      offers.forEach((offer) => {
-        const marker = new L.Marker([offer.location.latitude, offer.location.longitude], {icon: DEFAULT_ICON});
-        markers.push(marker);
+      markers.push(...createMarkers(offers, activeOffer));
+      markers.forEach((marker) => {
         marker.addTo(map);
       });
 
@@ -36,7 +41,7 @@ export const Map: FC<MapProps> = ({mapClassName, offers}) => {
         );
       };
     }
-  }, [map, offers]);
+  }, [map, offers, activeOffer]);
 
   useEffect(() => {
     if (map) {

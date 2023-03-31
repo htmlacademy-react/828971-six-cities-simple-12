@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import CurrentOffer from '../offer-card/offer';
 import {Offer} from '../../../../types/offer';
+import {useAppDispatch} from '../../../../hooks/use-global-state';
+import {setActiveOfferAction} from '../../../../store/action';
 // import {useAppSelector} from '../../../../hooks/use-global-state';
 // import {State} from '../../../../types/state';
 
@@ -9,7 +11,9 @@ type OffersListProps = {
 }
 
 function OffersList({offers}: OffersListProps): JSX.Element {
-  const [, setCardHovered] = useState<Offer|null>(null);
+
+  const dispatch = useAppDispatch();
+  // const [, setCardHovered] = useState<Offer|null>(null);
   const [iterable, setIterable] = useState<Offer[]>(offers);
 
   useEffect(() => {
@@ -23,8 +27,8 @@ function OffersList({offers}: OffersListProps): JSX.Element {
     }
   }, [offers]);
 
-  const mouseEnterHandler = (elem: Offer) => setCardHovered(elem);
-  const mouseLeaveHandler = () => setCardHovered(null);
+  const mouseEnterHandler = (elem: Offer) => dispatch(setActiveOfferAction(elem));
+  const mouseLeaveHandler = () => dispatch(setActiveOfferAction(null));
 
   return(
     <>
