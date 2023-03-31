@@ -35,6 +35,14 @@ export const SORTING_OPTIONS: Option[] = [
   },
 ];
 
+export const URL_API = 'https://12.react.pages.academy/six-cities-simple';
+export const REQUEST_TIMEOUT = 5000;
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const DEFAULT_OPTION: Option = SORTING_OPTIONS[0];
 
 export const MAP_URL_TEMPLATE = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';

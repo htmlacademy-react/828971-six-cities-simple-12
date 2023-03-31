@@ -25,6 +25,7 @@ export const Map: FC<MapProps> = ({mapClassName, offers}) => {
 
 
   //toDo можно ли сделать вменяемое выделение одного маркера без перерисовки вообще всех маркеров?
+  //toDo - ну и объект в activeOffer нафиг не нужен. Можно бы сущность и поменьше.
   useEffect(() => {
     const markers: Marker[] = [];
     if (map) {

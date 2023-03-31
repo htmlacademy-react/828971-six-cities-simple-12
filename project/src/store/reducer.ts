@@ -1,25 +1,29 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setCityAction, fillOffersAction, setSortTypeAction, setActiveOfferAction} from './action';
-import {offers} from '../mocks/offers';
+import {setCityAction, setSortTypeAction, setActiveOfferAction, loadOffersAction} from './action';
 import {DEFAULT_CITY, DEFAULT_OPTION} from '../constants';
 import {Offer} from '../types/offer';
 
-const initialState = {
+type InitialState = {
+  city: string,
+  sortType: string,
+  offers: null | Offer[],
+  activeOffer: null | Offer,
+};
+
+const initialState: InitialState = {
   city: DEFAULT_CITY,
   sortType: DEFAULT_OPTION.sortType,
-  offers: offers.slice().filter((offer) => offer.city.name === DEFAULT_CITY),
+  offers: [],
   activeOffer: null as null | Offer,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(loadOffersAction, (state, action) => {
+      state.offers = action.payload;
+    })
     .addCase(setCityAction, (state, action) => {
       state.city = action.payload;
-    })
-    .addCase(fillOffersAction, (state) => {
-      state.offers = offers
-        .slice()
-        .filter((offer) => offer.city.name === state.city);
     })
     .addCase(setSortTypeAction, (state, action) => {
       state.sortType = action.payload;

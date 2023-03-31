@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import {AppRoutes} from '../../routes';
 import classes from './notfoundpage.module.css';
-{/*<Link to={ auth.userName && auth.userName !== 'товарищ' ? '/authorized' : '/' } className="App-link">main page?</Link>*/}
 
 function NotFound(): JSX.Element {
   return (
