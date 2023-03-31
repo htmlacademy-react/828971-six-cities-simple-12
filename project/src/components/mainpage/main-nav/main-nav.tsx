@@ -1,34 +1,29 @@
-import React from 'react';
-// import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {setCityAction} from '../../../store/action';
+import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
+import {CITIES} from '../../../constants';
+import {State} from '../../../types/state';
 
-type City = {
-  name: string;
-  anchor: string;
-  isActive: boolean;
-};
+function MainNav(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const actualCity: string = useAppSelector((state: State) => state.city);
 
-type NavProps = {
-  cities: City[];
-  onClickHandler: (name: string) => void;
-};
-
-function MainNav({cities, onClickHandler}: NavProps): JSX.Element {
+  const onClickHandler = (chosenCity: string): void => {
+    dispatch(setCityAction(chosenCity));
+  };
 
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          { cities.map((city: City): JSX.Element => (
-            <li className="locations__item" key={ city.name }>
+          { CITIES.map((city: string): JSX.Element => (
+            <li className="locations__item" key={ city }>
               <Link
-                to={city.anchor}
-                className={`locations__item-link tabs__item${ city.isActive ? ' tabs__item--active' : ''}`}
-                onClick={
-                  () => onClickHandler(city.name)
-                }
+                to={`#${city.toLowerCase()}`}
+                className={`locations__item-link tabs__item ${ city === actualCity ? ' tabs__item--active' : ''}`}
+                onClick={ () => onClickHandler(city) }
               >
-                <span>{ city.name }</span>
+                <span>{ city }</span>
               </Link>
             </li>
           ))}

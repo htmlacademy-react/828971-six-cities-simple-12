@@ -2,6 +2,7 @@ import {useEffect, useRef, useState, MutableRefObject} from 'react';
 import L, {Map} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {Location} from '../../types/location';
+import {MAP_URL_TEMPLATE, MAP_ATRIBUTION} from '../../constants';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
@@ -21,9 +22,9 @@ function useMap(
       });
 
       L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        MAP_URL_TEMPLATE,
         {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          attribution: MAP_ATRIBUTION,
         },
       ).addTo(instance);
 
