@@ -35,7 +35,7 @@ function Residence({ property, feedbacks } : ResidenceProps): JSX.Element {
               </section>
             </div>
           </div>
-          <Map mapClassName={'property__map'}/>
+          <Map offers={offers.slice(0, 2)} mapClassName={'property__map'}/>
         </section>
         <div className="container">
           <section className="near-places places">

@@ -5,17 +5,16 @@ import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/use-map/use-map';
 import {DEFAULT_ICON, MAP_HEIGHT} from '../../constants';
 import {Location} from '../../types/location';
-import {useAppSelector} from '../../hooks/use-global-state';
-import {State} from '../../types/state';
+import {Offer} from '../../types/offer';
 
 type MapProps = {
   mapClassName: string;
+  offers: Offer[];
 }
 
 //колыбель функционального компонента - учимся пользоваться FC
-export const Map: FC<MapProps> = ({mapClassName}) => {
-  const currentOffers = useAppSelector((state: State) => state.offers);
-  const mapCenter: Location = currentOffers[0].city.location;
+export const Map: FC<MapProps> = ({mapClassName, offers}) => {
+  const mapCenter: Location = offers[0].city.location;
   const mapRef = useRef(null);
 
   const map = useMap(mapRef, mapCenter);
@@ -23,7 +22,7 @@ export const Map: FC<MapProps> = ({mapClassName}) => {
   useEffect(() => {
     const markers: Marker[] = [];
     if (map) {
-      currentOffers.forEach((offer) => {
+      offers.forEach((offer) => {
         const marker = new L.Marker([offer.location.latitude, offer.location.longitude], {icon: DEFAULT_ICON});
         markers.push(marker);
         marker.addTo(map);
@@ -37,15 +36,13 @@ export const Map: FC<MapProps> = ({mapClassName}) => {
         );
       };
     }
-  }, [map, currentOffers]);
+  }, [map, offers]);
 
   useEffect(() => {
     if (map) {
       map.setView([mapCenter.latitude, mapCenter.longitude], mapCenter.zoom);
-      // map.panTo([mapCenter.latitude, mapCenter.longitude]);
-      // map.setZoom(mapCenter.zoom);
     }
-  }, [currentOffers]);
+  }, [offers]);
 
   return (
     <section

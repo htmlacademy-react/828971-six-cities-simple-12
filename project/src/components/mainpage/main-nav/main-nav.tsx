@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {changeCityAction} from '../../../store/action';
+import {setCityAction} from '../../../store/action';
 import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
 import {CITIES} from '../../../constants';
 import {State} from '../../../types/state';
@@ -9,7 +9,7 @@ function MainNav(): JSX.Element {
   const actualCity: string = useAppSelector((state: State) => state.city);
 
   const onClickHandler = (chosenCity: string): void => {
-    dispatch(changeCityAction(chosenCity));
+    dispatch(setCityAction(chosenCity));
   };
 
   return (

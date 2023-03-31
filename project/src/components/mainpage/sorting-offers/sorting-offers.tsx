@@ -1,36 +1,36 @@
-import {FILTER_OPTIONS} from '../../../constants';
+import {SORTING_OPTIONS} from '../../../constants';
 import {useState} from 'react';
 import cn from 'classnames';
-// import {sortOffers} from '../../controllers/filter-offer-controller';
-// import {State} from '../../../types/state';
-// import {useAppSelector} from '../../../hooks/use-global-state';
-// import {Offer} from '../../../types/offer';
 import {Option} from '../../../types/option';
+import {setSortTypeAction} from '../../../store/action';
+import {useAppDispatch} from '../../../hooks/use-global-state';
 
-type FilterOffersProps = {
-  setOptionCB: (option: Option) => void;
-  activeOption: Option;
-};
-
-function FilterOffers({setOptionCB, activeOption}: FilterOffersProps) : JSX.Element{
+function SortingOffers() : JSX.Element{
   const [opener, setOpener] = useState<boolean>(false);
+  const [sortBy, setSortBy] = useState<string>('Popular');
+
+  const dispatch = useAppDispatch();
+
+  const onClickHandler = (currentSortBy: string, currentSortType: string) => {
+    dispatch(setSortTypeAction(currentSortType));
+    setSortBy(currentSortBy);
+    setOpener(false);
+  };
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} onClick={() => setOpener(!opener)}>
-        &nbsp;{activeOption.name}
+        &nbsp;{ sortBy }
         <svg className="places__sorting-arrow" width="7" height="4"><use xlinkHref="#icon-arrow-select"></use></svg>
       </span>
       <ul className={cn('places__options', 'places__options--custom', {'places__options--opened' : opener})}>
-        {FILTER_OPTIONS.map( (option: Option): JSX.Element => (
+        {SORTING_OPTIONS.map( (option: Option): JSX.Element => (
           <li
             className="places__option"
             key={option.name}
             tabIndex={0}
-            onClick={() => {
-              setOptionCB(option);
-              setOpener(false);}}
+            onClick={ () => onClickHandler(option.name, option.sortType) }
           >
             {option.name}
           </li>
@@ -40,7 +40,7 @@ function FilterOffers({setOptionCB, activeOption}: FilterOffersProps) : JSX.Elem
   );
 }
 
-export default FilterOffers;
+export default SortingOffers;
 
 {/*places__options--opened*/}
 
