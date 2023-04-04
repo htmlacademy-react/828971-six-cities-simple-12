@@ -11,8 +11,12 @@ export function getCallback(sortType: string):(offer1: Offer, offer2: Offer) => 
   return () => 0;
 }
 
-export function getSortedOffers(offers: Offer[], sortType: string): Offer[] {
-  return offers.slice().sort(getCallback(sortType));
+export function getFilteredOffers(offers: Offer[], city: string): Offer[] {
+  return offers.filter((offer: Offer) => offer.city.name === city);
+}
+
+export function getSortedOffers(offers: Offer[], city: string, sortType: string): Offer[] {
+  return getFilteredOffers(offers, city).slice().sort(getCallback(sortType));
 }
 
 export function createMarkers(offers: Offer[], activeOffer: null | Offer): Marker[] {

@@ -4,10 +4,10 @@ import {DEFAULT_CITY, DEFAULT_OPTION} from '../constants';
 import {Offer} from '../types/offer';
 
 type InitialState = {
-  city: string,
-  sortType: string,
-  offers: null | Offer[],
-  activeOffer: null | Offer,
+  city: string;
+  sortType: string;
+  offers: null | Offer[];
+  activeOffer: null | Offer;
 };
 
 const initialState: InitialState = {

@@ -1,5 +1,5 @@
 import classes from './loader.module.css';
-import spinner from "../../img/spinner.svg";
+import spinner from '../../img/spinner.svg';
 
 function Loader(): JSX.Element {
   return (
