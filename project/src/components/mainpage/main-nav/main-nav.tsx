@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {setCityAction} from '../../../store/action';
+import {setCityAction} from '../../../store/actions';
 import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
 import {CITIES} from '../../../constants';
 import {State} from '../../../types/state';

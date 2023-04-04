@@ -17,27 +17,27 @@ function MainFilled({ offers }: MainFilledProps): JSX.Element {
   const currentOffers = getFilteredOffers(offers, city);
 
   return (
-    <GlobalWrapper>
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <MainNav/>
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{currentOffers.length} places to stay in {city}</b>
-              <SortingOffers/>
-              <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={getSortedOffers(offers, city, sortType)}/>
+      <GlobalWrapper>
+        <main className="page__main page__main--index">
+          <h1 className="visually-hidden">Cities</h1>
+          <MainNav/>
+          <div className="cities">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{currentOffers.length} places to stay in {city}</b>
+                <SortingOffers/>
+                <div className="cities__places-list places__list tabs__content">
+                  <OffersList offers={getSortedOffers(offers, city, sortType)}/>
+                </div>
+              </section>
+              <div className="cities__right-section">
+                <Map offers={currentOffers} mapClassName={'cities__map'}/>
               </div>
-            </section>
-            <div className="cities__right-section">
-              <Map offers={currentOffers} mapClassName={'cities__map'}/>
             </div>
           </div>
-        </div>
-      </main>
-    </GlobalWrapper>
+        </main>
+      </GlobalWrapper>
   );
 }
 

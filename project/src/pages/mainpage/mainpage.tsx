@@ -1,18 +1,24 @@
 import {useAppSelector} from '../../hooks/use-global-state';
 import MainFilled from '../../components/mainpage/main-filled/main-filled';
 import MainEmpty from '../../components/mainpage/main-empty/main-empty';
-import {Offer} from '../../types/offer';
+import {State} from '../../types/state';
+import Loader from '../../components/loader/loader';
 
 function Main(): JSX.Element {
-  const offers: null | Offer[] = useAppSelector((state) => state.offers);
+  const { offers, error }: State = useAppSelector((state) => state);
 
-  if(offers && offers.length > 0) {
-    return (<MainFilled offers={ offers }/>);
-  } else {
-    return (<MainEmpty/>);
-  }
+  const component = () => {
+    if(error) {
+      return <MainEmpty/>
+    } else if (offers.length === 0) {
+      return <Loader/>
+    } else {
+      return <MainFilled offers={ offers }/>
+    }
+  };
 
 
+  return(component());
 }
 
 export default Main;

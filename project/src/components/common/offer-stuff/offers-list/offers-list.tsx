@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import CurrentOffer from '../offer-card/offer';
 import {Offer} from '../../../../types/offer';
 import {useAppDispatch} from '../../../../hooks/use-global-state';
-import {setActiveOfferAction} from '../../../../store/action';
+import {setActiveOfferAction} from '../../../../store/actions';
 // import {useAppSelector} from '../../../../hooks/use-global-state';
 // import {State} from '../../../../types/state';
 
