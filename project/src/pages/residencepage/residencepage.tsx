@@ -9,7 +9,8 @@ import RoomInfo from '../../components/room-page/room-info/room-info';
 import HostBlock from '../../components/room-page/host-block/host-block';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
 import { Map } from '../../components/map/map';
-import {useAppSelector} from '../../hooks/use-global-state';
+// import {useAppSelector} from '../../hooks/use-global-state';
+import {offers} from '../../mocks/offers';
 
 
 type ResidenceProps = {
@@ -18,8 +19,6 @@ type ResidenceProps = {
 }
 
 function Residence({ property, feedbacks } : ResidenceProps): JSX.Element {
-  const offers: Offer[] = useAppSelector((state) => state.offers);
-
   return (
     <GlobalWrapper>
       <main className="page__main page__main--property">

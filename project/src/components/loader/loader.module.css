@@ -1,0 +1,27 @@
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  height: 75px;
+  pointer-events: none;
+  animation: App-logo-spin infinite 2s linear;
+}
+/*@media (prefers-reduced-motion: no-preference) {*/
+/*  .App-logo_loader {*/
+/*    */
+/*  }*/
+/*}*/

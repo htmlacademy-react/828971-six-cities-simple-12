@@ -1,0 +1,17 @@
+.NotLoaded {
+  margin: 168px auto;
+  padding: 50px 120px;
+  border: 1px solid #4481c3;
+  transform: skew(-15deg);
+  border-radius: 3px;
+  max-width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img {
+  transform: skew(15deg);
+  max-width: 40%;
+}
+

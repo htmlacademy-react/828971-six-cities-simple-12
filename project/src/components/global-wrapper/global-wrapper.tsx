@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {AppRoutes} from '../../routes';
-// import Link from 'react-router-dom';
 
 function GlobalWrapper({children} : PropsWithChildren) {
   const navigate = useNavigate();
