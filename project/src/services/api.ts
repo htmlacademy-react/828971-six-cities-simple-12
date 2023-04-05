@@ -1,8 +1,8 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 
-import {REQUEST_TIMEOUT, URL_API} from './constants';
-import {getToken} from './seervices/token';
-import {processErrorHandle} from './seervices/process-error-module';
+import {REQUEST_TIMEOUT, URL_API} from '../constants';
+import {getToken} from './token';
+import {processErrorHandle} from './process-error-module';
 import {StatusCodes} from 'http-status-codes/build/cjs';
 
 export const createAPI = (): AxiosInstance => {

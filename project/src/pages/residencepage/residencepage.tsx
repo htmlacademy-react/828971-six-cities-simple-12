@@ -1,4 +1,3 @@
-import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 import {Offer} from '../../types/offer';
 import React from 'react';
 import FeedbackForm from '../../components/room-page/feedback-stuff/feedback-form/feedback-form';
@@ -9,9 +8,8 @@ import RoomInfo from '../../components/room-page/room-info/room-info';
 import HostBlock from '../../components/room-page/host-block/host-block';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
 import { Map } from '../../components/map/map';
-// import {useAppSelector} from '../../hooks/use-global-state';
 import {offers} from '../../mocks/offers';
-
+import Header from '../../components/common/header/header';
 
 type ResidenceProps = {
   property: Offer;
@@ -20,7 +18,8 @@ type ResidenceProps = {
 
 function Residence({ property, feedbacks } : ResidenceProps): JSX.Element {
   return (
-    <GlobalWrapper>
+    <div className="page">
+      <Header/>
       <main className="page__main page__main--property">
         <section className="property">
           <RoomGallery pics={ property.images } />
@@ -45,7 +44,7 @@ function Residence({ property, feedbacks } : ResidenceProps): JSX.Element {
           </section>
         </div>
       </main>
-    </GlobalWrapper>
+    </div>
   );
 }
 export default Residence;

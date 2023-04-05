@@ -1,8 +1,9 @@
-import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
+import Header from '../../components/common/header/header';
 
 function Login(): JSX.Element {
   return (
-    <GlobalWrapper>
+    <div className="page page--gray page--login">
+      <Header/>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -28,7 +29,7 @@ function Login(): JSX.Element {
           </section>
         </div>
       </main>
-    </GlobalWrapper>
+    </div>
   );
 }
 export default Login;
