@@ -2,9 +2,8 @@ import {State} from '../../../types/state';
 import {useAppSelector} from '../../../hooks/use-global-state';
 import {AuthorizationStatus} from '../../../services/auth-data';
 
-
 function HeaderNav() {
-  const { authorizationStatus }: State = useAppSelector((state) => state);
+  const { authorizationStatus, email }: State = useAppSelector((state) => state);
   return (
     authorizationStatus === AuthorizationStatus.Auth
       ?
@@ -13,7 +12,7 @@ function HeaderNav() {
           <li className="header__nav-item user">
             <div className="header__nav-profile">
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-              <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+              <span className="header__user-name user__name">{ email }</span>
             </div>
           </li>
           <li className="header__nav-item">

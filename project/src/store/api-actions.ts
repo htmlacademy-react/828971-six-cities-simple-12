@@ -48,7 +48,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
       await api.get(APIRoute.Login);
       dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
     } catch {
-      dispatch(setAuthStatusAction(AuthorizationStatus.NoAuth))
+      dispatch(setAuthStatusAction(AuthorizationStatus.NoAuth));
     }
   }
 );
@@ -62,7 +62,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   async ({login: email, password}, {dispatch, extra: api}) => {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
-    dispatch(setAuthStatusAction(AuthorizationStatus.Auth))
+    dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
   }
 );
 

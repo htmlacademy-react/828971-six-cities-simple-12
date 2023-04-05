@@ -1,8 +1,9 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setCityAction, setSortTypeAction, setActiveOfferAction, loadOffersAction, setAuthStatusAction, setError, setOffersDataLoadingStatus} from './actions';
+import {setCityAction, setMail, setSortTypeAction, setActiveOfferAction, loadOffersAction, setAuthStatusAction, setError, setOffersDataLoadingStatus} from './actions';
 import {DEFAULT_CITY, DEFAULT_OPTION} from '../constants';
 import {Offer} from '../types/offer';
 import {AuthorizationStatus} from '../services/auth-data';
+// import {AuthData} from '../types/auth-data';
 
 
 type InitialState = {
@@ -11,6 +12,7 @@ type InitialState = {
   offers: Offer[];
   activeOffer: null | Offer;
   authorizationStatus: AuthorizationStatus;
+  email: string;
   isOffersDataLoading: boolean;
   error: string | null;
 };
@@ -23,6 +25,7 @@ const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: false,
   error: null,
+  email: '',
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -33,6 +36,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setError, (state, action) => {
       state.error = action.payload;
     })
+    .addCase(setMail, (state, action) => {
+      state.email = action.payload;
+    })
+
     .addCase(loadOffersAction, (state, action) => {
       state.offers = action.payload;
     })

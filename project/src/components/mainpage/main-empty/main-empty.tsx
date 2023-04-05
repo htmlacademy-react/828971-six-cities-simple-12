@@ -1,4 +1,3 @@
-import GlobalWrapper from '../../global-wrapper/global-wrapper';
 import MainNav from '../main-nav/main-nav';
 import {useAppSelector} from '../../../hooks/use-global-state';
 

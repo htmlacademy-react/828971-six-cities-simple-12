@@ -11,11 +11,13 @@ function Main(): JSX.Element {
   return(
     <div className="page page--gray page--main">
       <Header/>
-      offers.length === 0
-      ?
-      <MainEmpty/>
-      :
-      <MainFilled offers={ offers }/>
+      {
+        offers.length === 0
+          ?
+          <MainEmpty/>
+          :
+          <MainFilled offers={offers}/>
+      }
     </div>
   );
 }
