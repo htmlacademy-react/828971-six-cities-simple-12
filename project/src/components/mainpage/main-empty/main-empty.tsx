@@ -1,8 +1,9 @@
 import MainNav from '../main-nav/main-nav';
 import {useAppSelector} from '../../../hooks/use-global-state';
+import {getCity} from '../../../store/output-data/output-data.selectors';
 
 function MainEmpty(): JSX.Element {
-  const city: string = useAppSelector((state) => state.city);
+  const city: string = useAppSelector(getCity);
   return(
     <main className="page__main page__main--index page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>

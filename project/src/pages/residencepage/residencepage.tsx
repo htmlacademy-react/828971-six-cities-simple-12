@@ -7,7 +7,7 @@ import RoomGallery from '../../components/room-page/room-gallery/room-gallery';
 import RoomInfo from '../../components/room-page/room-info/room-info';
 import HostBlock from '../../components/room-page/host-block/host-block';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
-import { Map } from '../../components/map/map';
+import { Map } from '../../components/common/map/map';
 import {offers} from '../../mocks/offers';
 import Header from '../../components/common/header/header';
 

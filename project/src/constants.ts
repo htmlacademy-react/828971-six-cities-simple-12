@@ -20,8 +20,14 @@ export const CITIES: readonly string[] = [
   'Brussels',
   'Amsterdam',
   'Hamburg',
-  'Dusseldorf',
+  'Dusseldorf'
 ];
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+  OutputData = 'OUTPUT_SETTINGS'
+}
 
 export const DEFAULT_CITY: string = CITIES[0];
 

@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import CurrentOffer from '../offer-card/offer';
 import {Offer} from '../../../../types/offer';
 import {useAppDispatch} from '../../../../hooks/use-global-state';
-import {setActiveOfferAction} from '../../../../store/actions';
-// import {useAppSelector} from '../../../../hooks/use-global-state';
-// import {State} from '../../../../types/state';
+import {outputData} from '../../../../store/output-data/output-data.slice';
+import {AUTH_TOKEN_KEY_NAME} from '../../../../constants';
+
 
 type OffersListProps = {
   offers: Offer[];
@@ -16,6 +16,7 @@ function OffersList({offers}: OffersListProps): JSX.Element {
   // const [, setCardHovered] = useState<Offer|null>(null);
   const [iterable, setIterable] = useState<Offer[]>(offers);
 
+  //toDO эту бредятину нужно убрать и нормальные данные подтянуть
   useEffect(() => {
     const page: string = document.location.pathname;
     if (page.includes('offer')) {
@@ -27,8 +28,8 @@ function OffersList({offers}: OffersListProps): JSX.Element {
     }
   }, [offers]);
 
-  const mouseEnterHandler = (elem: Offer) => dispatch(setActiveOfferAction(elem));
-  const mouseLeaveHandler = () => dispatch(setActiveOfferAction(null));
+  const mouseEnterHandler = (elem: Offer) => dispatch(outputData.actions.setActiveOfferAction(elem));
+  const mouseLeaveHandler = () => dispatch(outputData.actions.setActiveOfferAction(null));
 
   return(
     <>

@@ -1,9 +1,25 @@
-import {State} from '../../../types/state';
-import {useAppSelector} from '../../../hooks/use-global-state';
+import { useNavigate } from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
 import {AuthorizationStatus} from '../../../services/auth-data';
+import {getAuthStatus} from '../../../store/user-process/user-process.selectors';
+import {logoutAction} from '../../../store/api-actions';
+import {AppRoutes} from '../../../routes';
+import React from 'react';
+import {getMail} from '../../../store/output-data/output-data.selectors';
 
 function HeaderNav() {
-  const { authorizationStatus, email }: State = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const email = useAppSelector(getMail);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const goToLogin = ():void => navigate(AppRoutes.Login);
+
+  const onClickHandler = (evt: React.MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+    dispatch(logoutAction());
+    goToLogin();
+  };
+
   return (
     authorizationStatus === AuthorizationStatus.Auth
       ?
@@ -16,7 +32,7 @@ function HeaderNav() {
             </div>
           </li>
           <li className="header__nav-item">
-            <a className="header__nav-link" href="#">
+            <a className="header__nav-link" href="#" onClick={ (evt) => onClickHandler(evt) }>
               <span className="header__signout">Sign out</span>
             </a>
           </li>

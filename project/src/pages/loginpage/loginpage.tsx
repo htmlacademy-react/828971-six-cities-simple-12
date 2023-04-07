@@ -1,21 +1,28 @@
 import Header from '../../components/common/header/header';
 import {useAppDispatch} from '../../hooks/use-global-state';
-import {setAuthStatusAction, setMail} from '../../store/actions';
-import {AuthorizationStatus} from '../../services/auth-data';
-import {FormEvent} from 'react';
-import {AppRoutes} from '../../routes';
-import { useNavigate } from 'react-router-dom';
+import {FormEvent, useRef} from 'react';
+import {loginAction} from '../../store/api-actions';
+import {AuthData} from '../../types/auth-data';
+import {outputData} from '../../store/output-data/output-data.slice';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const goToMain = ():void => navigate(AppRoutes.Root);
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const onSubmit = (authData: AuthData) => {
+    dispatch(loginAction(authData));
+    dispatch(outputData.actions.setCurrentMail(authData.email));
+  };
 
   const onSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
-    dispatch(setMail('somemail@mail.ml'));
-    goToMain();
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      onSubmit({
+        email: loginRef.current.value,
+        password: passwordRef.current.value,
+      });
+    }
   };
 
   return (
@@ -28,11 +35,11 @@ function Login(): JSX.Element {
             <form className="login__form form" action="#" method="post" onSubmit={ (evt) => onSubmitHandler(evt) }>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input" type="email" name="email" placeholder="Email" required />
+                <input ref={loginRef} className="login__input form__input" type="email" name="name" placeholder="Email" required />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" placeholder="Password" required />
+                <input ref={passwordRef} className="login__input form__input" type="password" name="password" placeholder="Password" required />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>

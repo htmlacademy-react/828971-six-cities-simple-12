@@ -2,13 +2,14 @@ import React, {FC, useEffect, useRef} from 'react';
 import {Marker} from 'leaflet';
 import cn from 'classnames';
 import 'leaflet/dist/leaflet.css';
-import useMap from '../../hooks/use-map/use-map';
+import useMap from '../../../hooks/use-map/use-map';
 // import {ACTIVE_ICON, DEFAULT_ICON, MAP_HEIGHT} from '../../constants';
-import {MAP_HEIGHT} from '../../constants';
-import {Location} from '../../types/location';
-import {Offer} from '../../types/offer';
-import {useAppSelector} from '../../hooks/use-global-state';
-import {createMarkers} from '../../utils';
+import {MAP_HEIGHT} from '../../../constants';
+import {Location} from '../../../types/location';
+import {Offer} from '../../../types/offer';
+import {useAppSelector} from '../../../hooks/use-global-state';
+import {createMarkers} from '../../../utils';
+import {getActiveOffer} from '../../../store/output-data/output-data.selectors';
 
 type MapProps = {
   mapClassName: string;
@@ -17,13 +18,13 @@ type MapProps = {
 
 //колыбель функционального компонента - учимся пользоваться FC
 export const Map: FC<MapProps> = ({mapClassName, offers}) => {
-  const activeOffer: Offer | null = useAppSelector((state) => state.activeOffer);
+  const activeOffer: Offer | null = useAppSelector(getActiveOffer);
   const mapCenter: Location = offers[0].city.location;
   const mapRef = useRef(null);
 
   const map = useMap(mapRef, mapCenter);
 
-  //toDo - ну и объект в activeOffer нафиг не нужен. Можно бы сущность и поменьше.
+  //toDo - объект в activeOffer нафиг не нужен. Можно бы сущность и поменьше.
   useEffect(() => {
     const markers: Marker[] = [];
     if (map) {

@@ -7,11 +7,13 @@ import {AppRoutes} from '../../routes';
 import NotFound from '../../pages/notfoundpage/notfoundpage';
 import {Offer} from '../../types/offer';
 import {Feedback} from '../../types/feedback';
-import {State} from '../../types/state';
-import Loader from '../loader/loader';
+import Loader from '../common/loader/loader';
 import {useAppSelector} from '../../hooks/use-global-state';
 import {AuthorizationStatus} from '../../services/auth-data';
-import PrivateRoute from '../private-route/private-route';
+import PrivateRoute from '../routes-redirection/private-route/private-route';
+import {getAuthStatus} from '../../store/user-process/user-process.selectors';
+import {getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
+import PublicRoute from '../routes-redirection/public-route/private-route';
 
 type AppSettings = {
   offers: Offer[];
@@ -19,7 +21,9 @@ type AppSettings = {
 }
 
 function App({ offers, feedbacks }: AppSettings): JSX.Element {
-  const { authorizationStatus, isOffersDataLoading }: State = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const isOffersDataLoading = useAppSelector(getIsDataLoading);
+  // const { authorizationStatus, isOffersDataLoading }: State = useAppSelector((state) => state);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (
@@ -51,7 +55,11 @@ function App({ offers, feedbacks }: AppSettings): JSX.Element {
         />
         <Route
           path={AppRoutes.Login}
-          element={<Login />}
+          element={
+            <PublicRoute authorizationStatus={ authorizationStatus }>
+              <Login />
+            </PublicRoute>
+          }
         />
         <Route
           path='*'

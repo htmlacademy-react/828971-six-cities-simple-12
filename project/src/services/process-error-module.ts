@@ -1,8 +1,6 @@
-import {store} from '../store';
-import {setError} from '../store/actions';
-// import {clearErrorAction} from '../store/api-actions';
+import {useAppSelector} from '../hooks/use-global-state';
+import {getError} from '../store/loading-data/loading-data.selectors';
 
-export const processErrorHandle = (message: string): void => {
-  store.dispatch(setError(message));
-  // store.dispatch(clearErrorAction());
+export const processErrorHandle = (message: string): string|null => {
+  return useAppSelector(getError)
 };

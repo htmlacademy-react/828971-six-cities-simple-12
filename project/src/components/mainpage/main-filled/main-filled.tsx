@@ -3,16 +3,20 @@ import {useAppSelector} from '../../../hooks/use-global-state';
 import MainNav from '../main-nav/main-nav';
 import SortingOffers from '../sorting-offers/sorting-offers';
 import OffersList from '../../common/offer-stuff/offers-list/offers-list';
-import {Map} from '../../map/map';
+import {Map} from '../../common/map/map';
 import {Offer} from '../../../types/offer';
 import {getFilteredOffers, getSortedOffers} from '../../../utils';
+import {getCity, getSortType} from '../../../store/output-data/output-data.selectors';
 
 type MainFilledProps = {
   offers: Offer[];
 }
 
 function MainFilled({ offers }: MainFilledProps): JSX.Element {
-  const { city, sortType }: State = useAppSelector((state) => state);
+  const city: string = useAppSelector(getCity);
+  const sortType: string = useAppSelector(getSortType);
+  // const { city, sortType }: State = useAppSelector((state) => state);
+  //toDo как такую запись, как выше, вытянуть из слайсов?
   const currentOffers = getFilteredOffers(offers, city);
 
   return (

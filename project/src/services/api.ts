@@ -24,13 +24,18 @@ export const createAPI = (): AxiosInstance => {
   api.interceptors.request.use(
     (config: AxiosRequestConfig) => {
       const token = getToken();
-
       if (token && config.headers) {
         config.headers['x-token'] = token;
       }
-
       return config;
     },
+  );
+
+  api.interceptors.request.use(
+    (config: AxiosRequestConfig) => {
+      console.log(config.data);
+      return config;
+    }
   );
 
   api.interceptors.response.use(
