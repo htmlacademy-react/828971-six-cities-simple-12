@@ -26,7 +26,7 @@ export const loadingData = createSlice({
       })
       .addCase(fetchOffers.rejected, (state) => {
         state.isOffersDataLoading = false;
-        state.error = 'There is some error there';
+        // state.error = 'There is some error there';
       });
   }
 });

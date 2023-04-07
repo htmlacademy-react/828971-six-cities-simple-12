@@ -20,7 +20,7 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(setMail, (state, action) => {
       state.email = action.payload;
-    })
+    });
 });
 
 export { reducer };

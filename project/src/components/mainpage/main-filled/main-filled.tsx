@@ -1,4 +1,3 @@
-import {State} from '../../../types/state';
 import {useAppSelector} from '../../../hooks/use-global-state';
 import MainNav from '../main-nav/main-nav';
 import SortingOffers from '../sorting-offers/sorting-offers';

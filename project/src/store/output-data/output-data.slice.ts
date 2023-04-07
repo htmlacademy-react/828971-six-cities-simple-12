@@ -4,6 +4,7 @@ import {OutputData} from '../../types/state';
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState: OutputData = {
+  error: null,
   currentMail: '',
   city: DEFAULT_CITY,
   sortType: DEFAULT_OPTION.sortType,
@@ -25,6 +26,9 @@ export const outputData = createSlice({
     },
     setActiveOfferAction: (state, action) => {
       state.activeOffer = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
   },
 });

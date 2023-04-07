@@ -1,7 +1,6 @@
 import { store } from '../store';
-import {City, Offer} from './offer';
+import {Offer} from './offer';
 import {AuthorizationStatus} from '../services/auth-data';
-import {DEFAULT_CITY, DEFAULT_OPTION} from '../constants';
 
 export type State = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
@@ -28,8 +27,9 @@ export type LoadingData = {
 }
 
 export type OutputData = {
-  currentMail: string,
-  city: string,
-  sortType: string,
-  activeOffer: null | Offer,
+  error: string | null;
+  currentMail: string;
+  city: string;
+  sortType: string;
+  activeOffer: null | Offer;
 }

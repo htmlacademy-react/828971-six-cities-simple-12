@@ -3,8 +3,6 @@ import CurrentOffer from '../offer-card/offer';
 import {Offer} from '../../../../types/offer';
 import {useAppDispatch} from '../../../../hooks/use-global-state';
 import {outputData} from '../../../../store/output-data/output-data.slice';
-import {AUTH_TOKEN_KEY_NAME} from '../../../../constants';
-
 
 type OffersListProps = {
   offers: Offer[];
