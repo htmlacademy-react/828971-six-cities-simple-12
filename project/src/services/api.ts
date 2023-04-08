@@ -35,6 +35,7 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.response.use(
     (response) => response,
+    // store.dispatch(loadingData.actions.setError(`${response.data.error} this is ${response.status}`));
     //todo здесь написать, что если статус не 200 - то надо это передать в текст ошибки, возможно try catch
     (error: AxiosError<{error: string}>) => {
       if (error.response && shouldDisplayError(error.response)) {
