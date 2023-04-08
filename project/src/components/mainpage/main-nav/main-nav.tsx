@@ -1,15 +1,15 @@
 import {Link} from 'react-router-dom';
-import {setCityAction} from '../../../store/action';
 import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
 import {CITIES} from '../../../constants';
-import {State} from '../../../types/state';
+import {outputData} from '../../../store/output-data/output-data.slice';
+import {getCity} from '../../../store/output-data/output-data.selectors';
 
 function MainNav(): JSX.Element {
   const dispatch = useAppDispatch();
-  const actualCity: string = useAppSelector((state: State) => state.city);
+  const actualCity: string = useAppSelector(getCity);
 
   const onClickHandler = (chosenCity: string): void => {
-    dispatch(setCityAction(chosenCity));
+    dispatch(outputData.actions.setCityAction(chosenCity));
   };
 
   return (

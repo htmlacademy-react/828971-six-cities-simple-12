@@ -2,14 +2,32 @@ import L, {Icon} from 'leaflet';
 import {Offer} from './types/offer';
 import {Option} from './types/option';
 
+export const URL_API = 'https://12.react.pages.academy/six-cities-simple';
+export const REQUEST_TIMEOUT = 5000;
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
+
+export const TIMEOUT_SHOW_ERROR = 2000;
+
 export const CITIES: readonly string[] = [
   'Paris',
   'Cologne',
   'Brussels',
   'Amsterdam',
   'Hamburg',
-  'Dusseldorf',
+  'Dusseldorf'
 ];
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+  OutputData = 'OUTPUT_SETTINGS'
+}
 
 export const DEFAULT_CITY: string = CITIES[0];
 
@@ -34,14 +52,6 @@ export const SORTING_OPTIONS: Option[] = [
     cb: (offer1: Offer, offer2: Offer): number => offer2.rating - offer1.rating,
   },
 ];
-
-export const URL_API = 'https://12.react.pages.academy/six-cities-simple';
-export const REQUEST_TIMEOUT = 5000;
-export enum APIRoute {
-  Offers = '/hotels',
-  Login = '/login',
-  Logout = '/logout',
-}
 
 export const DEFAULT_OPTION: Option = SORTING_OPTIONS[0];
 

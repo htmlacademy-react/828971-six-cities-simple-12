@@ -2,8 +2,8 @@ import {SORTING_OPTIONS} from '../../../constants';
 import {useState} from 'react';
 import cn from 'classnames';
 import {Option} from '../../../types/option';
-import {setSortTypeAction} from '../../../store/action';
 import {useAppDispatch} from '../../../hooks/use-global-state';
+import {outputData} from '../../../store/output-data/output-data.slice';
 
 function SortingOffers() : JSX.Element{
   const [opener, setOpener] = useState<boolean>(false);
@@ -12,7 +12,7 @@ function SortingOffers() : JSX.Element{
   const dispatch = useAppDispatch();
 
   const onClickHandler = (currentSortBy: string, currentSortType: string) => {
-    dispatch(setSortTypeAction(currentSortType));
+    dispatch(outputData.actions.setSortTypeAction(currentSortType));
     setSortBy(currentSortBy);
     setOpener(false);
   };
@@ -41,10 +41,3 @@ function SortingOffers() : JSX.Element{
 }
 
 export default SortingOffers;
-
-{/*places__options--opened*/}
-
-{/*<li className="places__option places__option--active" tabIndex={0}>Popular</li>*/}
-{/*<li className="places__option" tabIndex={0}>Price: low to high</li>*/}
-{/*<li className="places__option" tabIndex={0}>Price: high to low</li>*/}
-{/*<li className="places__option" tabIndex={0}>Top rated first</li>*/}

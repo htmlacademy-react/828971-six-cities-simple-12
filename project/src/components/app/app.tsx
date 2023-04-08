@@ -7,6 +7,15 @@ import {AppRoutes} from '../../routes';
 import NotFound from '../../pages/notfoundpage/notfoundpage';
 import {Offer} from '../../types/offer';
 import {Feedback} from '../../types/feedback';
+import Loader from '../common/loader/loader';
+import {useAppSelector} from '../../hooks/use-global-state';
+import {AuthorizationStatus} from '../../services/auth-data';
+import PrivateRoute from '../routes-redirection/private-route/private-route';
+import {getAuthStatus} from '../../store/user-process/user-process.selectors';
+import {getError, getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
+import PublicRoute from '../routes-redirection/public-route/private-route';
+import NotLoaded from '../common/not-loaded/not-loaded';
+
 
 type AppSettings = {
   offers: Offer[];
@@ -14,26 +23,50 @@ type AppSettings = {
 }
 
 function App({ offers, feedbacks }: AppSettings): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const isOffersDataLoading = useAppSelector(getIsDataLoading);
+  const error = useAppSelector(getError);
+
+  if (error) {
+    return (
+      <NotLoaded/>
+    );
+  }
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
+    return (
+      <Loader/>
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutes.Root}
           element={
-            <Main/>
+            <PrivateRoute authorizationStatus={ authorizationStatus }>
+              <Main/>
+            </PrivateRoute>
           }
-        />
-        <Route
-          path={AppRoutes.Login}
-          element={<Login />}
         />
         <Route
           path={AppRoutes.Residence}
           element={
-            <Residence
-              property={ offers[0] }
-              feedbacks={ feedbacks }
-            />
+            <PrivateRoute authorizationStatus={ authorizationStatus }>
+              <Residence
+                property={ offers[0] }
+                feedbacks={ feedbacks }
+              />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.Login}
+          element={
+            <PublicRoute authorizationStatus={ authorizationStatus }>
+              <Login />
+            </PublicRoute>
           }
         />
         <Route
