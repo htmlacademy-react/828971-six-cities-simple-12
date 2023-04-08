@@ -12,10 +12,10 @@ import {useAppSelector} from '../../hooks/use-global-state';
 import {AuthorizationStatus} from '../../services/auth-data';
 import PrivateRoute from '../routes-redirection/private-route/private-route';
 import {getAuthStatus} from '../../store/user-process/user-process.selectors';
-import {getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
+import {getError, getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
 import PublicRoute from '../routes-redirection/public-route/private-route';
-import {getError} from '../../store/output-data/output-data.selectors';
 import NotLoaded from '../common/not-loaded/not-loaded';
+
 
 type AppSettings = {
   offers: Offer[];
@@ -27,15 +27,15 @@ function App({ offers, feedbacks }: AppSettings): JSX.Element {
   const isOffersDataLoading = useAppSelector(getIsDataLoading);
   const error = useAppSelector(getError);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
-    return (
-      <Loader/>
-    );
-  }
-
   if (error) {
     return (
       <NotLoaded/>
+    );
+  }
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
+    return (
+      <Loader/>
     );
   }
 

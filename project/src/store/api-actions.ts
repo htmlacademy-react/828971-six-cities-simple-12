@@ -6,6 +6,7 @@ import {APIRoute} from '../constants';
 import {dropToken, saveToken} from '../services/token';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
+// import {outputData} from './output-data/output-data.slice';
 
 //todo разобраться с ошибкой: почему не получается вывести её текст
 
@@ -22,6 +23,7 @@ import {UserData} from '../types/user-data';
 //     );
 //   },
 // );
+//
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
@@ -32,6 +34,18 @@ export const fetchOffers = createAsyncThunk<Offer[], undefined, {
   async (_arg, {extra: api}): Promise<Offer[]> => {
     const {data} = await api.get<Offer[]>(APIRoute.Offers);
     return data;
+  },
+);
+
+export const fetchEmail = createAsyncThunk<string, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchEmail',
+  async (_arg, {extra: api}): Promise<string> => {
+    const {data} = await api.get<UserData>(APIRoute.Login);
+    return data.email;
   },
 );
 

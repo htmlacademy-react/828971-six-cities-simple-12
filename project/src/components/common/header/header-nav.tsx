@@ -5,7 +5,8 @@ import {getAuthStatus} from '../../../store/user-process/user-process.selectors'
 import {logoutAction} from '../../../store/api-actions';
 import {AppRoutes} from '../../../routes';
 import React from 'react';
-import {getMail} from '../../../store/output-data/output-data.selectors';
+import {getMail} from '../../../store/loading-data/loading-data.selectors';
+
 
 function HeaderNav() {
   const authorizationStatus = useAppSelector(getAuthStatus);

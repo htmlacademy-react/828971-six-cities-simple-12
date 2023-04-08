@@ -1,18 +1,21 @@
 import Header from '../../components/common/header/header';
 import {useAppDispatch} from '../../hooks/use-global-state';
 import {FormEvent, useRef} from 'react';
-import {loginAction} from '../../store/api-actions';
+import {fetchEmail, loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
-import {outputData} from '../../store/output-data/output-data.slice';
+import {AppRoutes} from '../../routes';
+import {useNavigate} from 'react-router';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
 
-  const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
-    dispatch(outputData.actions.setCurrentMail(authData.email));
+  const onSubmit = async (authData: AuthData) => {
+    await dispatch(loginAction(authData));
+    await dispatch(fetchEmail());
+    navigate(AppRoutes.Root);
   };
 
   const onSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {

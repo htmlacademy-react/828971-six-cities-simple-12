@@ -1,6 +1,6 @@
 import classes from './notloaded.module.css';
 import {useAppSelector} from '../../../hooks/use-global-state';
-import {getError} from '../../../store/output-data/output-data.selectors';
+import {getError} from '../../../store/loading-data/loading-data.selectors';
 
 function NotLoaded(): JSX.Element {
   const error = useAppSelector(getError);

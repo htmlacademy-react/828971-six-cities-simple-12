@@ -16,20 +16,9 @@ export type InitialState = {
   error: string | null;
 };
 
-export type UserProcess = {
-  authorizationStatus: AuthorizationStatus;
-};
+export type UserProcess = Pick<InitialState, 'authorizationStatus'>;
 
-export type LoadingData = {
-  offers: Offer[];
-  isOffersDataLoading: boolean;
-  error: string | null;
-}
+export type LoadingData = Pick<InitialState, 'offers' | 'isOffersDataLoading' | 'error' | 'email'>;
 
-export type OutputData = {
-  error: string | null;
-  currentMail: string;
-  city: string;
-  sortType: string;
-  activeOffer: null | Offer;
-}
+export type OutputData = Omit<InitialState, 'authorizationStatus' | keyof LoadingData >;
+
