@@ -27,18 +27,12 @@ function App({ offers, feedbacks }: AppSettings): JSX.Element {
   const isOffersDataLoading = useAppSelector(getIsDataLoading);
   const error = useAppSelector(getError);
 
-  if (error) {
-    return (
-      <NotLoaded/>
-    );
-  }
-
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (
       <Loader/>
     );
   }
-
+  //здесь и далее возможно нужен HOC вместо проверки на ошибку и not loaded
   return (
     <BrowserRouter>
       <Routes>
@@ -46,7 +40,10 @@ function App({ offers, feedbacks }: AppSettings): JSX.Element {
           path={AppRoutes.Root}
           element={
             <PrivateRoute authorizationStatus={ authorizationStatus }>
-              <Main/>
+              <>
+                <Main/>
+                {error && <NotLoaded/>}
+              </>
             </PrivateRoute>
           }
         />
@@ -54,10 +51,13 @@ function App({ offers, feedbacks }: AppSettings): JSX.Element {
           path={AppRoutes.Residence}
           element={
             <PrivateRoute authorizationStatus={ authorizationStatus }>
-              <Residence
-                property={ offers[0] }
-                feedbacks={ feedbacks }
-              />
+              <>
+                <Residence
+                  property={ offers[0] }
+                  feedbacks={ feedbacks }
+                />
+                {error && <NotLoaded/>}
+              </>
             </PrivateRoute>
           }
         />
@@ -65,7 +65,10 @@ function App({ offers, feedbacks }: AppSettings): JSX.Element {
           path={AppRoutes.Login}
           element={
             <PublicRoute authorizationStatus={ authorizationStatus }>
-              <Login />
+              <>
+                <Login />
+                {error && <NotLoaded/>}
+              </>
             </PublicRoute>
           }
         />

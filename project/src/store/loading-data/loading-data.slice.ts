@@ -15,7 +15,7 @@ export const loadingData = createSlice({
   name: NameSpace.Data,
   initialState,
   reducers: {
-    setError: (state, action: PayloadAction<string>) => {
+    setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
     }
   },
