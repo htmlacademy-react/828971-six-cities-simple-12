@@ -25,22 +25,8 @@
   background-color: white;
 }
 
-.ImgContainer {
-  position: relative;
-  max-width: 40%;
-}
-
-.numOf {
-  position: absolute;
-  color: #4481c3;
-  font-size: 32px;
-  border-radius: 10px;
-  margin: 0 auto;
-  top: 60%;
-  left: 40%;
-}
-
 .img {
   transform: skew(15deg);
+  max-width: 40%;
 }
 

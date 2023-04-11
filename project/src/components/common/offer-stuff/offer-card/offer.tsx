@@ -26,7 +26,7 @@ function CurrentOffer({myProperty, onMouseEnter, onMouseLeave}: CurrentOfferProp
         </div>
         <RatingStars rating={ myProperty.rating } specifyClassWord={ 'place-card' } />
         <h2 className="place-card__name">
-          <Link to={`/offer/'${myProperty.id.toString()}`}>
+          <Link to={`/offer/${myProperty.id.toString()}`}>
             { myProperty.title }
           </Link>
         </h2>

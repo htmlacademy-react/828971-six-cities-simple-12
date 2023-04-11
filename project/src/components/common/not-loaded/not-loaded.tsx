@@ -17,10 +17,7 @@ function NotLoaded(): JSX.Element {
           <h1 className="login__title">Data is not loaded, nothing is around...</h1>
           <p>{error}</p>
         </div>
-        <div className={ classes.ImgContainer }>
-          <img className={classes.img} src="img/40not4.svg" alt=""/>
-          <p className={ classes.numOf }>403</p>
-        </div>
+        <img className={classes.img} src="img/40not4.svg" alt=""/>
       </section>
     </div>
   );

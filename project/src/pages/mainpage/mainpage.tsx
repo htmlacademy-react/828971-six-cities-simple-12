@@ -1,24 +1,23 @@
 import {useAppSelector} from '../../hooks/use-global-state';
 import MainFilled from '../../components/mainpage/main-filled/main-filled';
 import MainEmpty from '../../components/mainpage/main-empty/main-empty';
-import Header from '../../components/common/header/header';
 import React from 'react';
 import {getOffers} from '../../store/loading-data/loading-data.selectors';
+import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
 
 function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);
 
   return(
-    <div className="page page--gray page--main">
-      <Header/>
+    <GlobalWrapper classes={'page page--gray page--main'}>
       {
-        offers.length === 0
+        offers && offers.length !== 0
           ?
-          <MainEmpty/>
-          :
           <MainFilled offers={offers}/>
+          :
+          <MainEmpty/>
       }
-    </div>
+    </GlobalWrapper>
   );
 }
 

@@ -21,6 +21,8 @@ function HeaderNav() {
     goToLogin();
   };
 
+  //todo sign in на loginpage не должно быть
+
   return (
     authorizationStatus === AuthorizationStatus.Auth
       ?

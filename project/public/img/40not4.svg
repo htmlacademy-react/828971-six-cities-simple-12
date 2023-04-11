@@ -16,6 +16,8 @@
     <path stroke="null" id="svg_7" d="m4228.024365,2875.753361c8.279,0 15,-6.72 15,-15c-0.743,-19.874 -29.26,-19.869 -30,0c0,8.28 6.722,15 15,15z"/>
     <path stroke="null" id="svg_8" d="m4324.424365,2875.753361c8.279,0 15,-6.72 15,-15c-0.743,-19.874 -29.26,-19.869 -30,0c0,8.28 6.722,15 15,15z"/>
    </g>
+    <text stroke="#000" transform="matrix(4.471165180206299,0,0,4.3350043296813965,-713.3244445323944,-811.821128963893) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="14" id="svg_15" y="251" x="205.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#4481c3">Error's</text>
+    <text stroke="#000" transform="matrix(4.471165180206299,0,0,4.3350043296813965,-687.3244445323944,-751.821128963893) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="14" id="svg_15" y="251" x="205.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#4481c3">here</text>
   </g>
  </g>
 </svg>

@@ -37,6 +37,18 @@ export const fetchOffers = createAsyncThunk<Offer[], undefined, {
   },
 );
 
+export const fetchProperty = createAsyncThunk<Offer, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchProperty',
+  async (id: string, {extra: api}): Promise<Offer> => {
+    const {data} = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
+    return data;
+  },
+);
+
 export const fetchEmail = createAsyncThunk<string, undefined, {
   dispatch: AppDispatch;
   state: State;

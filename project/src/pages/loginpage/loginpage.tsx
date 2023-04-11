@@ -5,6 +5,7 @@ import {fetchEmail, loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
 import {AppRoutes} from '../../routes';
 import {useNavigate} from 'react-router';
+import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -29,8 +30,7 @@ function Login(): JSX.Element {
   };
 
   return (
-    <div className="page page--gray page--login">
-      <Header/>
+    <GlobalWrapper classes={'page page--gray page--login'}>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -56,7 +56,7 @@ function Login(): JSX.Element {
           </section>
         </div>
       </main>
-    </div>
+    </GlobalWrapper>
   );
 }
 export default Login;
