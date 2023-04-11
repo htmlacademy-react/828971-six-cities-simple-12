@@ -18,20 +18,18 @@ type ResidenceProps = {
   feedbacks: Feedback[];
 }
 
-
-
 function Residence({ feedbacks } : ResidenceProps): JSX.Element {
   const offers = useAppSelector(getOffers);
   const property = useAppSelector(getProperty);
   const { id } = useParams();
 
+  const getPropertyFromServer = async(offerID: string) => {
+    await store.dispatch(fetchProperty(offerID));
+  };
+
   useEffect( () => {
     if(id) {
-      store.dispatch(fetchProperty(id));
-      // console.log('this id is');
-      //       // console.log(id);
-      //       // console.log('this property is');
-      //       // console.log(property);
+      getPropertyFromServer(id);
     }
   }, [id]);
 
