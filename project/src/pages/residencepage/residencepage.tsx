@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import FeedbackForm from '../../components/room-page/feedback-stuff/feedback-form/feedback-form';
 import FeedbacksList from '../../components/room-page/feedback-stuff/feedback-list/feedback-list';
-import {Feedback} from '../../types/feedback';
 import RoomGallery from '../../components/room-page/room-gallery/room-gallery';
 import RoomInfo from '../../components/room-page/room-info/room-info';
 import HostBlock from '../../components/room-page/host-block/host-block';
@@ -9,27 +8,44 @@ import OffersList from '../../components/common/offer-stuff/offers-list/offers-l
 import { Map } from '../../components/common/map/map';
 import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
 import {useParams} from 'react-router-dom';
-import {getOffers, getProperty} from '../../store/loading-data/loading-data.selectors';
-import {useAppSelector} from '../../hooks/use-global-state';
-import {fetchEmail, fetchProperty} from '../../store/api-actions';
+import {getNearby, getProperty, getFeedback} from '../../store/loading-data/loading-data.selectors';
+import {useAppDispatch, useAppSelector} from '../../hooks/use-global-state';
+import {fetchNearby, fetchProperty, fetchFeedback} from '../../store/api-actions';
+import { useNavigate } from 'react-router-dom';
+import {AppRoutes} from '../../routes';
+import {getAuthStatus} from '../../store/user-process/user-process.selectors';
+import {AuthorizationStatus} from '../../constants';
+// import {outputData} from '../../store/output-data/output-data.slice';
+import {Offer} from '../../types/offer';
+import {outputData} from '../../store/output-data/output-data.slice';
 import {store} from '../../store';
 
-type ResidenceProps = {
-  feedbacks: Feedback[];
-}
-
-function Residence({ feedbacks } : ResidenceProps): JSX.Element {
-  const offers = useAppSelector(getOffers);
-  const property = useAppSelector(getProperty);
+function Residence(): JSX.Element {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const property = useAppSelector(getProperty);
+  const nearby = useAppSelector(getNearby);
+  const comments = useAppSelector(getFeedback);
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const navigate = useNavigate();
 
-  const getPropertyFromServer = async(offerID: string) => {
-    await store.dispatch(fetchProperty(offerID));
+
+  const getData = async(dataID: string) => {
+    const selectedProperty = await dispatch(fetchProperty(dataID));
+    await dispatch(fetchNearby(dataID));
+    await dispatch(fetchFeedback(dataID));
+    if (!selectedProperty.payload) {
+      navigate(AppRoutes.NotFound);
+    }
+    store.dispatch(outputData.actions.setActiveOfferAction(selectedProperty.payload as Offer));
   };
+
+  const getPointsForMap = (): Offer[] => nearby.concat([property as Offer]);
+  const pointsForMap = getPointsForMap();
 
   useEffect( () => {
     if(id) {
-      getPropertyFromServer(id);
+      getData(id);
     }
   }, [id]);
 
@@ -45,25 +61,25 @@ function Residence({ feedbacks } : ResidenceProps): JSX.Element {
                 <RoomInfo property={property}/>
                 <HostBlock host={property.host} description={property.description}/>
                 <section className="property__reviews reviews">
-                  <FeedbacksList feedbacks={feedbacks}/>
-                  <FeedbackForm/>
+                  {comments && <FeedbacksList feedbacks={comments}/> }
+                  { authorizationStatus === AuthorizationStatus.Auth && <FeedbackForm/> }
                 </section>
               </div>
             </div>
-            <Map offers={offers} mapClassName={'property__map'}/>
+            { pointsForMap.length > 0 && <Map offers={pointsForMap} mapClassName={'property__map'}/> }
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                <OffersList offers={offers}/>
+                { nearby && <OffersList offers={nearby} mouseHandlers={false}/> }
               </div>
             </section>
           </div>
         </main>
       </GlobalWrapper>
       :
-      <p>Nothing is here!</p>
+      <p>Nothing</p>
   );
 }
 export default Residence;

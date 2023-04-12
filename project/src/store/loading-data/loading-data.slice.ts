@@ -1,12 +1,14 @@
 import {LoadingData} from '../../types/state';
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchEmail, fetchOffers, fetchProperty} from '../api-actions';
+import {fetchEmail, fetchOffers, fetchProperty, fetchNearby, fetchFeedback} from '../api-actions';
 import {NameSpace} from '../../constants';
 import {PayloadAction} from '@reduxjs/toolkit/dist/createAction';
 
 const initialState: LoadingData = {
   offers: [],
   property: null,
+  nearby: [],
+  feedback: [],
   isDataLoading: false,
   error: null,
   email: '',
@@ -28,19 +30,6 @@ export const loadingData = createSlice({
       .addCase(fetchEmail.rejected, (state) => {
         state.email = '';
       })
-      .addCase(fetchProperty.pending, (state) => {
-        // state.isDataLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchProperty.fulfilled, (state, action) => {
-        state.property = action.payload;
-        // state.isDataLoading = false;
-        state.error = null;
-      })
-      .addCase(fetchProperty.rejected, (state) => {
-        state.error = 'We can\'t get property info';
-        // state.isDataLoading = false;
-      })
       .addCase(fetchOffers.pending, (state) => {
         state.isDataLoading = true;
         state.error = null;
@@ -53,6 +42,45 @@ export const loadingData = createSlice({
       .addCase(fetchOffers.rejected, (state) => {
         state.isDataLoading = false;
         state.error = 'We can\'t connect with the server, whats for my sake going on? Check connection please!';
+      })
+      .addCase(fetchProperty.pending, (state) => {
+        // state.isDataLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchProperty.fulfilled, (state, action) => {
+        state.property = action.payload;
+        state.isDataLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchProperty.rejected, (state) => {
+        state.error = 'We can\'t get property info';
+        state.isDataLoading = false;
+      })
+      .addCase(fetchNearby.pending, (state) => {
+        // state.isDataLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchNearby.fulfilled, (state, action) => {
+        state.nearby = action.payload;
+        state.isDataLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchNearby.rejected, (state) => {
+        state.error = 'There is no nearby properties';
+        state.isDataLoading = false;
+      })
+      .addCase(fetchFeedback.pending, (state) => {
+        // state.isDataLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchFeedback.fulfilled, (state, action) => {
+        state.feedback = action.payload;
+        state.isDataLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchFeedback.rejected, (state) => {
+        state.error = 'There is no comments about this building';
+        state.isDataLoading = false;
       });
   }
 });

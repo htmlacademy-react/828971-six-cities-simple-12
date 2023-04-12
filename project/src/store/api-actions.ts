@@ -6,6 +6,7 @@ import {APIRoute} from '../constants';
 import {dropToken, saveToken} from '../services/token';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
+import {Feedback} from '../types/feedback';
 // import {outputData} from './output-data/output-data.slice';
 
 //todo разобраться с ошибкой: почему не получается вывести её текст
@@ -45,6 +46,30 @@ export const fetchProperty = createAsyncThunk<Offer, string, {
   'data/fetchProperty',
   async (id: string, {extra: api}): Promise<Offer> => {
     const {data} = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
+    return data;
+  },
+);
+
+export const fetchNearby = createAsyncThunk<Offer[], string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearby',
+  async (id: string, {extra: api}): Promise<Offer[]> => {
+    const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
+    return data;
+  },
+);
+
+export const fetchFeedback = createAsyncThunk<Feedback[], string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFeedback',
+  async (id: string, {extra: api}): Promise<Feedback[]> => {
+    const {data} = await api.get<Feedback[]>(`${APIRoute.Feedback}/${id}`);
     return data;
   },
 );

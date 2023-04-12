@@ -5,8 +5,8 @@ import RatingStars from '../../rating-stars/rating-stars';
 
 type CurrentOfferProps = {
   myProperty: Offer;
-  onMouseEnter: MouseEventHandler<HTMLElement>;
-  onMouseLeave: MouseEventHandler<HTMLElement>;
+  onMouseEnter?: MouseEventHandler<HTMLElement>;
+  onMouseLeave?: MouseEventHandler<HTMLElement>;
 }
 
 function CurrentOffer({myProperty, onMouseEnter, onMouseLeave}: CurrentOfferProps): JSX.Element {

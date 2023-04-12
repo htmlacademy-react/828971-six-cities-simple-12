@@ -1,6 +1,7 @@
 import { store } from '../store';
 import {Offer} from './offer';
 import {AuthorizationStatus} from '../services/auth-data';
+import {Feedback} from './feedback';
 
 export type State = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
@@ -10,6 +11,8 @@ export type InitialState = {
   sortType: string;
   offers: Offer[];
   property: null | Offer;
+  nearby: Offer[];
+  feedback: Feedback[];
   activeOffer: null | Offer;
   authorizationStatus: AuthorizationStatus;
   email: string;
@@ -19,7 +22,6 @@ export type InitialState = {
 
 export type UserProcess = Pick<InitialState, 'authorizationStatus'>;
 
-export type OutputData = Pick<InitialState, 'city' | 'sortType' | 'activeOffer' >;
+export type OutputData = Pick<InitialState, 'city' | 'sortType' | 'activeOffer'>;
 
-export type LoadingData = Omit<InitialState, 'authorizationStatus' | keyof OutputData >;
-
+export type LoadingData = Omit<InitialState, keyof UserProcess | keyof OutputData>;
