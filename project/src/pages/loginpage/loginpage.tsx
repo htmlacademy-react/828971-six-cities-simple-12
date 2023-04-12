@@ -1,4 +1,3 @@
-import Header from '../../components/common/header/header';
 import {useAppDispatch} from '../../hooks/use-global-state';
 import {FormEvent, useRef} from 'react';
 import {fetchEmail, loginAction} from '../../store/api-actions';
@@ -26,6 +25,8 @@ function Login(): JSX.Element {
         email: loginRef.current.value,
         password: passwordRef.current.value,
       });
+      loginRef.current.value = '';
+      passwordRef.current.value = '';
     }
   };
 

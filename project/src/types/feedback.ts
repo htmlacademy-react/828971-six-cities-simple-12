@@ -1,9 +1,12 @@
 import {User} from './user';
 
-export type Feedback = {
+export type FeedbackData = {
+  comment: string;
+  rating: number;
+};
+
+export type Feedback = FeedbackData & {
   id: number;
   user: User;
-  rating: number;
-  comment: string;
   date: string;
 };

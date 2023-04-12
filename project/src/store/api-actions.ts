@@ -6,7 +6,7 @@ import {APIRoute} from '../constants';
 import {dropToken, saveToken} from '../services/token';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
-import {Feedback} from '../types/feedback';
+import {Feedback, FeedbackData} from '../types/feedback';
 // import {outputData} from './output-data/output-data.slice';
 
 //todo разобраться с ошибкой: почему не получается вывести её текст
@@ -106,6 +106,17 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   async ({email, password}, {extra: api}) => {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
+  },
+);
+
+export const sendFeedbackAction = createAsyncThunk<void, [string, FeedbackData], {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/sendFeedback',
+  async ([id, {comment, rating}], {extra: api}) => {
+    await api.post<Feedback>(`${APIRoute.Feedback}/${id}`, <FeedbackData>{comment, rating});
   },
 );
 

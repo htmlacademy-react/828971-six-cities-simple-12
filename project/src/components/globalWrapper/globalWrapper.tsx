@@ -16,5 +16,5 @@ export const GlobalWrapper = ({children, classes}: GWProps): JSX.Element => {
       {error && <NotLoaded/>}
     </div>
   );
-}
+};
 export default GlobalWrapper;

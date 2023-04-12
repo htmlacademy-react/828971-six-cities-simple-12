@@ -62,7 +62,7 @@ function Residence(): JSX.Element {
                 <HostBlock host={property.host} description={property.description}/>
                 <section className="property__reviews reviews">
                   {comments && <FeedbacksList feedbacks={comments}/> }
-                  { authorizationStatus === AuthorizationStatus.Auth && <FeedbackForm/> }
+                  { authorizationStatus === AuthorizationStatus.Auth && <FeedbackForm id={ id as string }/> }
                 </section>
               </div>
             </div>
