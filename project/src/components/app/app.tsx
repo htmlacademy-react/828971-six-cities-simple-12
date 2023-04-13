@@ -7,7 +7,7 @@ import {AppRoutes} from '../../routes';
 import NotFound from '../../pages/notfoundpage/notfoundpage';
 import Loader from '../common/loader/loader';
 import {useAppSelector} from '../../hooks/use-global-state';
-import {AuthorizationStatus} from '../../services/auth-data';
+import {AuthorizationStatus} from '../../constants';
 import PrivateRoute from '../routes-redirection/private-route/private-route';
 import {getAuthStatus} from '../../store/user-process/user-process.selectors';
 import {getIsDataLoading} from '../../store/loading-data/loading-data.selectors';

@@ -2,7 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {setMail} from './actions';
 import {DEFAULT_CITY, DEFAULT_OPTION} from '../constants';
 import {Offer} from '../types/offer';
-import {AuthorizationStatus} from '../services/auth-data';
+import {AuthorizationStatus} from '../constants';
 import {InitialState} from '../types/state';
 
 const initialState: InitialState = {

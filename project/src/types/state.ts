@@ -1,6 +1,6 @@
 import { store } from '../store';
 import {Offer} from './offer';
-import {AuthorizationStatus} from '../services/auth-data';
+import {AuthorizationStatus} from '../constants';
 import {Feedback} from './feedback';
 
 export type State = ReturnType<typeof store.getState>;

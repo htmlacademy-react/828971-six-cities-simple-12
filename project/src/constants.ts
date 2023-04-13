@@ -10,8 +10,9 @@ export enum APIRoute {
   Feedback = '/comments',
   Login = '/login',
   Logout = '/logout',
+}
 
-}export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
+export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
 
 export const TIMEOUT_SHOW_ERROR = 2000;
 

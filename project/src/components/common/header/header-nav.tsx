@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
-import {AuthorizationStatus} from '../../../services/auth-data';
+import {AuthorizationStatus} from '../../../constants';
 import {getAuthStatus} from '../../../store/user-process/user-process.selectors';
 import {logoutAction} from '../../../store/api-actions';
 import {AppRoutes} from '../../../routes';

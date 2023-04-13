@@ -1,6 +1,6 @@
 import {Navigate} from 'react-router-dom';
 import {AppRoutes} from '../../../routes';
-import {AuthorizationStatus} from '../../../services/auth-data';
+import {AuthorizationStatus} from '../../../constants';
 
 type PublicRouteProps = {
   authorizationStatus: AuthorizationStatus;
