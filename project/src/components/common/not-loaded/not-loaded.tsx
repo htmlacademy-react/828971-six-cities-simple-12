@@ -1,11 +1,13 @@
 import classes from './notloaded.module.css';
-import {useAppSelector} from '../../../hooks/use-global-state';
-import {getError} from '../../../store/loading-data/loading-data.selectors';
 import {store} from '../../../store';
 import {loadingData} from '../../../store/loading-data/loading-data.slice';
 
-function NotLoaded(): JSX.Element {
-  const error = useAppSelector(getError);
+type NotLoadedProps = {
+  error: string;
+}
+
+
+function NotLoaded({error}: NotLoadedProps): JSX.Element {
   const onClickHandler = (): void => {
     store.dispatch(loadingData.actions.setError(null));
   };
@@ -14,7 +16,7 @@ function NotLoaded(): JSX.Element {
     <div className={classes.container} onClick={ onClickHandler }>
       <section className={ classes.NotLoaded }>
         <div>
-          <h1 className="login__title">Data is not loaded, nothing is around...</h1>
+          <h1 className="login__title">There&apos;s some error here...</h1>
           <p>{error}</p>
         </div>
         <img className={classes.img} src="img/40not4.svg" alt=""/>

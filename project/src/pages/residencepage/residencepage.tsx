@@ -19,6 +19,7 @@ import {AuthorizationStatus} from '../../constants';
 import {Offer} from '../../types/offer';
 import {outputData} from '../../store/output-data/output-data.slice';
 import {store} from '../../store';
+import Loader from '../../components/common/loader/loader';
 
 function Residence(): JSX.Element {
   const { id } = useParams();
@@ -79,7 +80,7 @@ function Residence(): JSX.Element {
         </main>
       </GlobalWrapper>
       :
-      <p>Nothing</p>
+      <Loader/>
   );
 }
 export default Residence;

@@ -3,8 +3,8 @@ import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} fro
 import {REQUEST_TIMEOUT, URL_API} from '../constants';
 import {getToken} from './token';
 import {StatusCodes} from 'http-status-codes/build/cjs';
-import {store} from '../store';
-import {loadingData} from '../store/loading-data/loading-data.slice';
+
+import {processErrorHandle} from './process-error-handle';
 
 
 export const createAPI = (): AxiosInstance => {
@@ -16,8 +16,7 @@ export const createAPI = (): AxiosInstance => {
 
   const StatusCodeMapping: Record<number, boolean> = {
     [StatusCodes.BAD_REQUEST]: true,
-    [StatusCodes.UNAUTHORIZED]: true,
-    [StatusCodes.NOT_FOUND]: true
+    [StatusCodes.NOT_FOUND]: true,
   };
 
   const shouldDisplayError = (response: AxiosResponse) => StatusCodeMapping[response.status];
@@ -34,12 +33,15 @@ export const createAPI = (): AxiosInstance => {
   );
 
   api.interceptors.response.use(
-    (response) => response,
-    // store.dispatch(loadingData.actions.setError(`${response.data.error} this is ${response.status}`));
-    //todo здесь написать, что если статус не 200 - то надо это передать в текст ошибки, возможно try catch
+    (response) => {
+      if(response.status < 200 || response.status > 299) {
+        processErrorHandle(`${response.statusText}... this is ${response.status}`);
+      }
+      return response;
+    },
     (error: AxiosError<{error: string}>) => {
       if (error.response && shouldDisplayError(error.response)) {
-        store.dispatch(loadingData.actions.setError(`${error.response.data.error} this is ${error.response.status}`));
+        processErrorHandle(`${error.response.data.error} this is ${error.response.status}`);
       }
       throw error;
     }

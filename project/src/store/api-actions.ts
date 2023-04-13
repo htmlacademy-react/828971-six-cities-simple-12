@@ -2,29 +2,27 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state';
 import {Offer} from '../types/offer';
-import {APIRoute} from '../constants';
+import {APIRoute, TIMEOUT_SHOW_ERROR} from '../constants';
 import {dropToken, saveToken} from '../services/token';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {Feedback, FeedbackData} from '../types/feedback';
-// import {outputData} from './output-data/output-data.slice';
+import {loadingData} from './loading-data/loading-data.slice';
 
-//todo разобраться с ошибкой: почему не получается вывести её текст
+export const clearErrorAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'game/clearError',
+  (_arg, {dispatch}) => {
+    setTimeout(
+      () => dispatch(loadingData.actions.setError(null)),
+      TIMEOUT_SHOW_ERROR,
+    );
+  },
+);
 
-// export const clearErrorAction = createAsyncThunk<void, undefined, {
-//   dispatch: AppDispatch;
-//   state: State;
-//   extra: AxiosInstance;
-// }>(
-//   'game/clearError',
-//   (_arg, {dispatch}) => {
-//     setTimeout(
-//       () => dispatch(setError(null)),
-//       TIMEOUT_SHOW_ERROR,
-//     );
-//   },
-// );
-//
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
