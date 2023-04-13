@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import HeaderNav from './header-nav';
+import {AppRoutes} from '../../../routes';
 
 function Header() {
   const navigate = useNavigate();
-  const goToMain = ():void => navigate('/');
+  const goToMain = ():void => navigate(AppRoutes.Root);
 
   return (
     <header className="header">

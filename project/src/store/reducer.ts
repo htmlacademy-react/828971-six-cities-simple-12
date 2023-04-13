@@ -9,9 +9,12 @@ const initialState: InitialState = {
   city: DEFAULT_CITY,
   sortType: DEFAULT_OPTION.sortType,
   offers: [],
+  property: null,
+  nearby: [],
+  feedback: [],
   activeOffer: null as null | Offer,
   authorizationStatus: AuthorizationStatus.Unknown,
-  isOffersDataLoading: false,
+  isDataLoading: false,
   error: null,
   email: '',
 };

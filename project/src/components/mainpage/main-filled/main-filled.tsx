@@ -14,8 +14,6 @@ type MainFilledProps = {
 function MainFilled({ offers }: MainFilledProps): JSX.Element {
   const city: string = useAppSelector(getCity);
   const sortType: string = useAppSelector(getSortType);
-  // const { city, sortType }: State = useAppSelector((state) => state);
-  //toDo как такую запись, как выше, вытянуть из слайсов?
   const currentOffers = getFilteredOffers(offers, city);
 
   return (
@@ -29,7 +27,7 @@ function MainFilled({ offers }: MainFilledProps): JSX.Element {
             <b className="places__found">{currentOffers.length} places to stay in {city}</b>
             <SortingOffers/>
             <div className="cities__places-list places__list tabs__content">
-              <OffersList offers={getSortedOffers(offers, city, sortType)}/>
+              <OffersList offers={getSortedOffers(offers, city, sortType)} mouseHandlers />
             </div>
           </section>
           <div className="cities__right-section">

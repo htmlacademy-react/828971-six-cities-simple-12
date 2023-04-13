@@ -2,28 +2,27 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state';
 import {Offer} from '../types/offer';
-import {APIRoute} from '../constants';
+import {APIRoute, TIMEOUT_SHOW_ERROR} from '../constants';
 import {dropToken, saveToken} from '../services/token';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
-// import {outputData} from './output-data/output-data.slice';
+import {Feedback, FeedbackData} from '../types/feedback';
+import {loadingData} from './loading-data/loading-data.slice';
 
-//todo разобраться с ошибкой: почему не получается вывести её текст
+export const clearErrorAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'game/clearError',
+  (_arg, {dispatch}) => {
+    setTimeout(
+      () => dispatch(loadingData.actions.setError(null)),
+      TIMEOUT_SHOW_ERROR,
+    );
+  },
+);
 
-// export const clearErrorAction = createAsyncThunk<void, undefined, {
-//   dispatch: AppDispatch;
-//   state: State;
-//   extra: AxiosInstance;
-// }>(
-//   'game/clearError',
-//   (_arg, {dispatch}) => {
-//     setTimeout(
-//       () => dispatch(setError(null)),
-//       TIMEOUT_SHOW_ERROR,
-//     );
-//   },
-// );
-//
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
@@ -33,6 +32,42 @@ export const fetchOffers = createAsyncThunk<Offer[], undefined, {
   'data/fetchOffers',
   async (_arg, {extra: api}): Promise<Offer[]> => {
     const {data} = await api.get<Offer[]>(APIRoute.Offers);
+    return data;
+  },
+);
+
+export const fetchProperty = createAsyncThunk<Offer, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchProperty',
+  async (id: string, {extra: api}): Promise<Offer> => {
+    const {data} = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
+    return data;
+  },
+);
+
+export const fetchNearby = createAsyncThunk<Offer[], string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearby',
+  async (id: string, {extra: api}): Promise<Offer[]> => {
+    const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
+    return data;
+  },
+);
+
+export const fetchFeedback = createAsyncThunk<Feedback[], string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFeedback',
+  async (id: string, {extra: api}): Promise<Feedback[]> => {
+    const {data} = await api.get<Feedback[]>(`${APIRoute.Feedback}/${id}`);
     return data;
   },
 );
@@ -69,6 +104,17 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   async ({email, password}, {extra: api}) => {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
+  },
+);
+
+export const sendFeedbackAction = createAsyncThunk<void, [string, FeedbackData], {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/sendFeedback',
+  async ([id, {comment, rating}], {extra: api}) => {
+    await api.post<Feedback>(`${APIRoute.Feedback}/${id}`, <FeedbackData>{comment, rating});
   },
 );
 

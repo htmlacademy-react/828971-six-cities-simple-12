@@ -5,40 +5,23 @@ import Login from '../../pages/loginpage/loginpage';
 import Residence from '../../pages/residencepage/residencepage';
 import {AppRoutes} from '../../routes';
 import NotFound from '../../pages/notfoundpage/notfoundpage';
-import {Offer} from '../../types/offer';
-import {Feedback} from '../../types/feedback';
 import Loader from '../common/loader/loader';
 import {useAppSelector} from '../../hooks/use-global-state';
 import {AuthorizationStatus} from '../../services/auth-data';
 import PrivateRoute from '../routes-redirection/private-route/private-route';
 import {getAuthStatus} from '../../store/user-process/user-process.selectors';
-import {getError, getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
+import {getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
 import PublicRoute from '../routes-redirection/public-route/private-route';
-import NotLoaded from '../common/not-loaded/not-loaded';
 
-
-type AppSettings = {
-  offers: Offer[];
-  feedbacks: Feedback[];
-}
-
-function App({ offers, feedbacks }: AppSettings): JSX.Element {
+function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthStatus);
   const isOffersDataLoading = useAppSelector(getIsDataLoading);
-  const error = useAppSelector(getError);
-
-  if (error) {
-    return (
-      <NotLoaded/>
-    );
-  }
-
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (
       <Loader/>
     );
   }
-
+  //здесь и далее возможно нужен HOC вместо проверки на ошибку и not loaded
   return (
     <BrowserRouter>
       <Routes>
@@ -53,12 +36,7 @@ function App({ offers, feedbacks }: AppSettings): JSX.Element {
         <Route
           path={AppRoutes.Residence}
           element={
-            <PrivateRoute authorizationStatus={ authorizationStatus }>
-              <Residence
-                property={ offers[0] }
-                feedbacks={ feedbacks }
-              />
-            </PrivateRoute>
+            <Residence/>
           }
         />
         <Route

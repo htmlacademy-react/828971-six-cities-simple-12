@@ -7,7 +7,7 @@ import {PayloadAction} from '@reduxjs/toolkit/dist/createAction';
 const initialState: OutputData = {
   city: DEFAULT_CITY,
   sortType: DEFAULT_OPTION.sortType,
-  activeOffer: null as null | Offer,
+  activeOffer: null,
 };
 
 export const outputData = createSlice({

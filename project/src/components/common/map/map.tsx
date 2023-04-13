@@ -24,7 +24,6 @@ export const Map: FC<MapProps> = ({mapClassName, offers}) => {
 
   const map = useMap(mapRef, mapCenter);
 
-  //toDo - объект в activeOffer нафиг не нужен. Можно бы сущность и поменьше.
   useEffect(() => {
     const markers: Marker[] = [];
     if (map) {
