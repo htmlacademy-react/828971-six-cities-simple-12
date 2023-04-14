@@ -1,6 +1,6 @@
-import {ACTIVE_ICON, DEFAULT_ICON, SORTING_OPTIONS} from './constants';
-import {Option} from './types/option';
-import {Offer} from './types/offer';
+import {ACTIVE_ICON, DEFAULT_ICON, SORTING_OPTIONS} from '../constants';
+import {Option} from '../types/option';
+import {Offer} from '../types/offer';
 import L, {Marker} from 'leaflet';
 
 export function getCallback(sortType: string):(offer1: Offer, offer2: Offer) => number {

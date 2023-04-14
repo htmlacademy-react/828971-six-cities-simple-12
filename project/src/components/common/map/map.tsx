@@ -8,7 +8,7 @@ import {MAP_HEIGHT} from '../../../constants';
 import {Location} from '../../../types/location';
 import {Offer} from '../../../types/offer';
 import {useAppSelector} from '../../../hooks/use-global-state';
-import {createMarkers} from '../../../utils';
+import {createMarkers} from '../../../services/utils';
 import {getActiveOffer} from '../../../store/output-data/output-data.selectors';
 
 type MapProps = {

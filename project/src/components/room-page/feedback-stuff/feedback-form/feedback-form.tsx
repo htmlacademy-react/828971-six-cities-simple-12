@@ -3,6 +3,8 @@ import {fetchFeedback, sendFeedbackAction} from '../../../../store/api-actions';
 import {FeedbackData} from '../../../../types/feedback';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/use-global-state';
 import {getFeedback} from '../../../../store/loading-data/loading-data.selectors';
+import {COMMENT_LENGTH, RATING_LEGEND} from '../../../../constants';
+import {RatingLegend} from '../../../../types/rating-legend';
 
 type FeedbackSettings = {
   rating: number;
@@ -10,36 +12,9 @@ type FeedbackSettings = {
   submitSwitcher: boolean;
 }
 
-type RatingLegend = {
-  title: string;
-  rating: number;
-};
-
 type FeedbackFormProps = {
   id: string;
 };
-
-const ratingLegend: RatingLegend[] = [
-  {
-    title: 'perfect',
-    rating: 5
-  },
-  {
-    title: 'good',
-    rating: 4
-  },
-  {
-    title: 'not bad',
-    rating: 3
-  },
-  {
-    title: 'badly',
-    rating: 2
-  },
-  {
-    title: 'terribly',
-    rating: 1
-  }];
 
 function FeedbackForm({id}: FeedbackFormProps): JSX.Element {
   const ratingRef = useRef<HTMLInputElement[]>([]);
@@ -83,16 +58,16 @@ function FeedbackForm({id}: FeedbackFormProps): JSX.Element {
   const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setState({...state, rating: +evt.currentTarget.value});
 
-    if (state.description !== null && state.description.length > 50 && state.submitSwitcher) {
+    if (state.description !== null && state.description.length > COMMENT_LENGTH && state.submitSwitcher) {
       setState({...state, rating: +evt.currentTarget.value, submitSwitcher: false});
     }
   };
 
   const onChangeTAHandler = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = evt.currentTarget.value;
-    if (text.length > 50 && state.rating !== 0 && state.submitSwitcher) {
+    if (text.length > COMMENT_LENGTH && state.rating !== 0 && state.submitSwitcher) {
       setState({...state, description: text, submitSwitcher: false});
-    } else if ((text.length < 50 || state.rating === 0) && !state.submitSwitcher) {
+    } else if ((text.length < COMMENT_LENGTH || state.rating === 0) && !state.submitSwitcher) {
       setState({...state, description: text, submitSwitcher: true});
     } else {
       setState({...state, description: text});
@@ -103,7 +78,7 @@ function FeedbackForm({id}: FeedbackFormProps): JSX.Element {
     <form className="reviews__form form" action="#" method="post" onSubmit={ onSubmitHandler }>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        { ratingLegend.map((star: RatingLegend, index: number): JSX.Element => (
+        { RATING_LEGEND.map((star: RatingLegend, index: number): JSX.Element => (
           <Fragment key={ star.title }>
             <input ref={(el: HTMLInputElement) => (ratingRef.current[index] = el)} className="form__rating-input visually-hidden" name="rating" value={ star.rating.toString() } id={`${star.rating.toString()}-stars`} type="radio" onChange={ onChangeHandler }/>
             <label htmlFor={`${star.rating.toString()}-stars`} className="reviews__rating-label form__rating-label" title={ star.title }>
@@ -118,7 +93,7 @@ function FeedbackForm({id}: FeedbackFormProps): JSX.Element {
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe
-          your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          your stay with at least <b className="reviews__text-amount">COMMENT_LENGTH characters</b>.
         </p>
         <button className="reviews__submit form__submit button" type="submit" disabled={ state.submitSwitcher }>Submit</button>
       </div>

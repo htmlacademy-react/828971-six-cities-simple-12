@@ -1,6 +1,6 @@
 
 import NotLoaded from '../../components/common/not-loaded/not-loaded';
-import React, {PropsWithChildren} from 'react';
+import {PropsWithChildren} from 'react';
 import Header from '../../components/common/header/header';
 import {useAppSelector} from '../../hooks/use-global-state';
 import {getError} from '../../store/loading-data/loading-data.selectors';

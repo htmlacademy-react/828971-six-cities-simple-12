@@ -1,6 +1,7 @@
 import L, {Icon} from 'leaflet';
 import {Offer} from './types/offer';
 import {Option} from './types/option';
+import {RatingLegend} from './types/rating-legend';
 
 export const URL_API = 'https://12.react.pages.academy/six-cities-simple';
 export const REQUEST_TIMEOUT = 5000;
@@ -79,4 +80,30 @@ export const ACTIVE_ICON: Icon = L.icon({
   iconAnchor: [15, 40],
 });
 
+export const RATING_LEGEND: RatingLegend[] = [
+  {
+    title: 'perfect',
+    rating: 5
+  },
+  {
+    title: 'good',
+    rating: 4
+  },
+  {
+    title: 'not bad',
+    rating: 3
+  },
+  {
+    title: 'badly',
+    rating: 2
+  },
+  {
+    title: 'terribly',
+    rating: 1
+  }
+];
+
+
 export const MAP_HEIGHT = '500px';
+
+export const COMMENT_LENGTH = 50;
