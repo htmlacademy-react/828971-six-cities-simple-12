@@ -1,6 +1,6 @@
 import { store } from '../store';
 import {Offer} from './offer';
-import {AuthorizationStatus} from '../constants';
+import {AuthorizationStatus, IsDataLoading} from '../constants';
 import {Feedback} from './feedback';
 
 export type State = ReturnType<typeof store.getState>;
@@ -16,7 +16,7 @@ export type InitialState = {
   activeOffer: null | Offer;
   authorizationStatus: AuthorizationStatus;
   email: string;
-  isDataLoading: boolean;
+  isDataLoading: IsDataLoading;
   error: string | null;
 };
 

@@ -41,7 +41,7 @@ export const createAPI = (): AxiosInstance => {
     },
     (error: AxiosError<{error: string}>) => {
       if (error.response && shouldDisplayError(error.response)) {
-        processErrorHandle(`${error.response.data.error} this is ${error.response.status}`);
+        processErrorHandle(`${error.response.data.error}! this is ${error.response.status}`);
       }
       throw error;
     }

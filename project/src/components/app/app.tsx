@@ -7,7 +7,7 @@ import {AppRoutes} from '../../routes';
 import NotFound from '../../pages/notfoundpage/notfoundpage';
 import Loader from '../common/loader/loader';
 import {useAppSelector} from '../../hooks/use-global-state';
-import {AuthorizationStatus} from '../../constants';
+import {AuthorizationStatus, IsDataLoading} from '../../constants';
 import PrivateRoute from '../routes-redirection/private-route/private-route';
 import {getAuthStatus} from '../../store/user-process/user-process.selectors';
 import {getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
@@ -16,7 +16,7 @@ import PublicRoute from '../routes-redirection/public-route/private-route';
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthStatus);
   const isOffersDataLoading = useAppSelector(getIsDataLoading);
-  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading === IsDataLoading.Offers) {
     return (
       <Loader/>
     );

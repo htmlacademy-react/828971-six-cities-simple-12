@@ -26,4 +26,5 @@ yarn-error.log*
 *.sublime*
 .vscode
 
+.eslintrc.json
 eslintrc.json

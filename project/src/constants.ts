@@ -38,6 +38,13 @@ export enum NameSpace {
   OutputData = 'OUTPUT_SETTINGS'
 }
 
+export enum IsDataLoading {
+  Offers = 'OFFERS',
+  SingleOffer = 'SINGLE_OFFER',
+  NoLoading = 'NO_LOADING'
+}
+
+
 export const DEFAULT_CITY: string = CITIES[0];
 
 export const SORTING_OPTIONS: Option[] = [

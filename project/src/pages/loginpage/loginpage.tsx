@@ -1,5 +1,5 @@
 import {useAppDispatch} from '../../hooks/use-global-state';
-import {FormEvent, useRef} from 'react';
+import {FormEvent, useEffect, useRef} from 'react';
 import {fetchEmail, loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
 import {AppRoutes} from '../../routes';
@@ -17,6 +17,7 @@ function Login(): JSX.Element {
     await dispatch(fetchEmail());
     navigate(AppRoutes.Root);
   };
+
 
   const onSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
