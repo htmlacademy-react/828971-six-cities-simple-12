@@ -35,13 +35,14 @@ export enum AuthorizationStatus {
 export enum NameSpace {
   Data = 'DATA',
   User = 'USER',
-  OutputData = 'OUTPUT_SETTINGS'
+  OutputData = 'OUTPUT_SETTINGS',
 }
 
 export enum IsDataLoading {
   Offers = 'OFFERS',
   SingleOffer = 'SINGLE_OFFER',
-  NoLoading = 'NO_LOADING'
+  FormSending = 'FORM_SENDING',
+  NoLoading = 'NO_LOADING',
 }
 
 

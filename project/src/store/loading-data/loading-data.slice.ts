@@ -20,7 +20,10 @@ export const loadingData = createSlice({
   reducers: {
     setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
-    }
+    },
+    setWhatsLoading: (state, action: PayloadAction<IsDataLoading>) => {
+      state.isDataLoading = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -85,4 +88,4 @@ export const loadingData = createSlice({
   }
 });
 
-export const { setError } = loadingData.actions;
+export const { setError, setWhatsLoading } = loadingData.actions;

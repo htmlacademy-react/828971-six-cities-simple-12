@@ -1,16 +1,18 @@
 import {useAppDispatch} from '../../hooks/use-global-state';
-import {FormEvent, useEffect, useRef} from 'react';
+import {FormEvent, useRef} from 'react';
 import {fetchEmail, loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
 import {AppRoutes} from '../../routes';
 import {useNavigate} from 'react-router';
 import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
+import {useDisabling} from '../../hooks/use-disabling/use-disabling';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
+  const isDisabled = useDisabling();
 
   const onSubmit = async (authData: AuthData) => {
     await dispatch(loginAction(authData));
@@ -46,7 +48,7 @@ function Login(): JSX.Element {
                 <label className="visually-hidden">Password</label>
                 <input ref={passwordRef} className="login__input form__input" type="password" name="password" placeholder="Password" required />
               </div>
-              <button className="login__submit form__submit button" type="submit">Sign in</button>
+              <button className="login__submit form__submit button" type="submit" disabled={ isDisabled }>Sign in</button>
             </form>
           </section>
           <section className="locations locations--login locations--current">

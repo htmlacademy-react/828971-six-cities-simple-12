@@ -17,10 +17,11 @@ export type InitialState = {
   authorizationStatus: AuthorizationStatus;
   email: string;
   isDataLoading: IsDataLoading;
+  isSending: boolean;
   error: string | null;
 };
 
-export type UserProcess = Pick<InitialState, 'authorizationStatus'>;
+export type UserProcess = Pick<InitialState, 'authorizationStatus' | 'isSending'>;
 
 export type OutputData = Pick<InitialState, 'city' | 'sortType' | 'activeOffer'>;
 

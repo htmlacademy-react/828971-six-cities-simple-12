@@ -11,7 +11,7 @@ function PublicRoute(props: PublicRouteProps): JSX.Element {
   const {authorizationStatus, children} = props;
 
   return (
-    authorizationStatus === AuthorizationStatus.NoAuth
+    authorizationStatus !== AuthorizationStatus.Auth
       ? children
       : <Navigate to={AppRoutes.Root} />
   );

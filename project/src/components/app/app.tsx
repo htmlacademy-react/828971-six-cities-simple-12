@@ -8,10 +8,9 @@ import NotFound from '../../pages/notfoundpage/notfoundpage';
 import Loader from '../common/loader/loader';
 import {useAppSelector} from '../../hooks/use-global-state';
 import {AuthorizationStatus, IsDataLoading} from '../../constants';
-import PrivateRoute from '../routes-redirection/private-route/private-route';
 import {getAuthStatus} from '../../store/user-process/user-process.selectors';
 import {getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
-import PublicRoute from '../routes-redirection/public-route/private-route';
+import PublicRoute from '../routes-redirection/public-route/public-route';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthStatus);

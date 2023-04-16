@@ -7,6 +7,7 @@ import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
 
 function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);
+
   return(
     <GlobalWrapper classes={'page page--gray page--main'}>
       {

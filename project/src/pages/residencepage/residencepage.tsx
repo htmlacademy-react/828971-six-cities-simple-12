@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom';
 import {AppRoutes} from '../../routes';
 import {getAuthStatus} from '../../store/user-process/user-process.selectors';
 import {AuthorizationStatus, IsDataLoading} from '../../constants';
-// import {outputData} from '../../store/output-data/output-data.slice';
 import {Offer} from '../../types/offer';
 import {outputData} from '../../store/output-data/output-data.slice';
 import {store} from '../../store';
