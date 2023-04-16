@@ -21,16 +21,14 @@ function App(): JSX.Element {
       <Loader/>
     );
   }
-  //здесь и далее возможно нужен HOC вместо проверки на ошибку и not loaded
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutes.Root}
           element={
-            <PrivateRoute authorizationStatus={ authorizationStatus }>
-              <Main/>
-            </PrivateRoute>
+            <Main/>
           }
         />
         <Route
