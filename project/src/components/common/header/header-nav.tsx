@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
 import {AuthorizationStatus} from '../../../constants';
 import {getAuthStatus} from '../../../store/user-process/user-process.selectors';
@@ -7,20 +7,13 @@ import {AppRoutes} from '../../../routes';
 import React from 'react';
 import {getMail} from '../../../store/loading-data/loading-data.selectors';
 
-
 function HeaderNav() {
   const authorizationStatus = useAppSelector(getAuthStatus);
   const email = useAppSelector(getMail);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const goToLogin = ():void => navigate(AppRoutes.Login);
 
-  const onClickHandler = (evt: React.MouseEvent<HTMLSpanElement>) => {
-    evt.preventDefault();
-    (async () => {
-      await dispatch(logoutAction());
-      goToLogin();
-    })();
+  const onClickLogoutHandler = () => {
+    (async () => await dispatch(logoutAction()))();
   };
 
 
@@ -36,9 +29,9 @@ function HeaderNav() {
             </div>
           </li>
           <li className="header__nav-item">
-            <Link className="header__nav-link" to={AppRoutes.Login} onClick={ (evt) => onClickHandler(evt) }>
+            <span className="header__nav-link" onClick={ onClickLogoutHandler } style={{cursor: 'pointer'}}>
               <span className="header__signout">Sign out</span>
-            </Link>
+            </span>
           </li>
         </ul>
       </nav>
@@ -46,10 +39,10 @@ function HeaderNav() {
       <nav className="header__nav">
         <ul className="header__nav-list">
           <li className="header__nav-item user">
-            <a className="header__nav-link header__nav-link--profile" href="#">
+            <Link className="header__nav-link header__nav-link--profile" to={AppRoutes.Login}>
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-              <Link className="header__login" to={AppRoutes.Login} onClick={ (evt) => onClickHandler(evt) }>Sign in</Link>
-            </a>
+              <span className="header__login" >Sign in</span>
+            </Link>
           </li>
         </ul>
       </nav>
