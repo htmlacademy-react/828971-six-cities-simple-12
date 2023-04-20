@@ -111,7 +111,12 @@ export const RATING_LEGEND: RatingLegend[] = [
   }
 ];
 
+export const MONTH_LEGEND: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export const MAP_HEIGHT = '500px';
 
 export const COMMENT_LENGTH = 50;
+
+export const YEAR_ORDER = 0;
+
+export const MONTH_ORDER = 1;

@@ -1,7 +1,8 @@
-import {ACTIVE_ICON, DEFAULT_ICON, SORTING_OPTIONS} from '../constants';
+import {ACTIVE_ICON, DEFAULT_ICON, MONTH_LEGEND, MONTH_ORDER, SORTING_OPTIONS, YEAR_ORDER} from '../constants';
 import {Option} from '../types/option';
 import {Offer} from '../types/offer';
 import L, {Marker} from 'leaflet';
+import {Feedback} from '../types/feedback';
 
 export function getCallback(sortType: string):(offer1: Offer, offer2: Offer) => number {
   const currentOption = SORTING_OPTIONS.find((elem: Option) => elem.sortType === sortType);
@@ -31,5 +32,35 @@ export function createMarkers(offers: Offer[], activeOffer: null | Offer): Marke
     markers.push(marker);
   });
   return markers;
+}
+
+function getDateForSorting(date: string): Date {
+  return new Date(date);
+}
+
+export function getDateForData(date: string): string {
+  return date.split('T', 1).toString();
+}
+
+export function getDateForDescription(date: string): string {
+  const dateComponents = date.split('-');
+  const currentMonth = +dateComponents[MONTH_ORDER];
+  const currentMonthName = MONTH_LEGEND[currentMonth - 1];
+  const currentYear = dateComponents[YEAR_ORDER];
+  return `${currentMonthName} ${currentYear}`;
+}
+
+export function getSortedFeedbacks(feedbacks: Feedback[]): Feedback[] {
+  return feedbacks.slice().sort((a, b): number => {
+    const firstDate = getDateForSorting(a.date);
+    const secondDate = getDateForSorting(b.date);
+    if (firstDate < secondDate) {
+      return 1;
+    } else if (firstDate > secondDate) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
 }
 
