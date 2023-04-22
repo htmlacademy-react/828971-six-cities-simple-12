@@ -1,9 +1,9 @@
-import {useAppSelector} from '../../hooks/use-global-state';
+import {useAppSelector} from '../../hooks/use-global-state/use-global-state';
 import MainFilled from '../../components/mainpage/main-filled/main-filled';
 import MainEmpty from '../../components/mainpage/main-empty/main-empty';
 import React from 'react';
 import {getOffers} from '../../store/loading-data/loading-data.selectors';
-import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
+import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 
 function Main(): JSX.Element {
   const offers = useAppSelector(getOffers);

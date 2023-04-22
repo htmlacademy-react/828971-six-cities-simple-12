@@ -17,7 +17,7 @@ export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
 
 export const TIMEOUT_SHOW_ERROR = 2000;
 
-export const CITIES: readonly string[] = [
+export const CITIES: string[] = [
   'Paris',
   'Cologne',
   'Brussels',
@@ -41,7 +41,6 @@ export enum NameSpace {
 export enum IsDataLoading {
   Offers = 'OFFERS',
   SingleOffer = 'SINGLE_OFFER',
-  FormSending = 'FORM_SENDING',
   NoLoading = 'NO_LOADING',
 }
 
@@ -115,7 +114,13 @@ export const MONTH_LEGEND: string[] = ['January', 'February', 'March', 'April', 
 
 export const MAP_HEIGHT = '500px';
 
-export const COMMENT_LENGTH = 50;
+export const MIN_COMMENT_LENGTH = 50;
+
+export const MAX_COMMENT_LENGTH = 300;
+
+export const MAX_FEEDBACKS_QUANTITY = 10;
+
+export const DATE_YMD_ORDER = 0;
 
 export const YEAR_ORDER = 0;
 

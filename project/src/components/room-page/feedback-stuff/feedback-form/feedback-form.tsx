@@ -1,11 +1,12 @@
 import React, {FormEvent, useEffect, useRef, useState} from 'react';
 import {fetchFeedback, sendFeedbackAction} from '../../../../store/api-actions';
 import {FeedbackData} from '../../../../types/feedback';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/use-global-state';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/use-global-state/use-global-state';
 import {getFeedback} from '../../../../store/loading-data/loading-data.selectors';
-import {COMMENT_LENGTH} from '../../../../constants';
+import {MIN_COMMENT_LENGTH} from '../../../../constants';
 import Rating from './rating';
 import {useDisabling} from '../../../../hooks/use-disabling/use-disabling';
+import {validateFeedback} from '../../../../services/utils';
 
 type FeedbackSettings = {
   rating: number;
@@ -37,45 +38,38 @@ function FeedbackForm({id}: FeedbackFormProps): JSX.Element {
       for(const radio of ratingRef.current) {
         radio.checked = false;
       }
+      setState({
+        rating: 0,
+        description: '',
+        isValidate: false
+      });
     }
   }, [feedbacks]);
 
-  const onSubmit = async (feedbackData: FeedbackData) => {
+  const onSubmit = async (feedbackData: FeedbackData, form: HTMLFormElement) => {
+    form.setAttribute('disabled', 'true');
     await dispatch(sendFeedbackAction([id, feedbackData]));
     await dispatch(fetchFeedback(id));
-    setState({
-      rating: 0,
-      description: '',
-      isValidate: false
-    });
+    form.setAttribute('disabled', 'false');
   };
 
-  const onSubmitHandler = (evt: FormEvent) => {
+  const onSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const feedback = {
       comment: state.description,
       rating: state.rating,
     };
-    onSubmit(feedback);
+    onSubmit(feedback, evt.currentTarget);
   };
 
   const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setState({...state, rating: +evt.currentTarget.value});
-
-    if (state.description !== null && state.description.length > COMMENT_LENGTH && !state.isValidate) {
-      setState({...state, rating: +evt.currentTarget.value, isValidate: true});
-    }
+    const rating = +evt.currentTarget.value;
+    setState({...state, rating: rating, isValidate: validateFeedback(rating, state.description)});
   };
 
   const onChangeTAHandler = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = evt.currentTarget.value;
-    if (text.length > COMMENT_LENGTH && state.rating !== 0 && !state.isValidate) {
-      setState({...state, description: text, isValidate: true});
-    } else if ((text.length < COMMENT_LENGTH || state.rating === 0) && state.isValidate) {
-      setState({...state, description: text, isValidate: false});
-    } else {
-      setState({...state, description: text});
-    }
+    setState({...state, description: text, isValidate: validateFeedback(state.rating, text)});
   };
 
   return(
@@ -86,7 +80,7 @@ function FeedbackForm({id}: FeedbackFormProps): JSX.Element {
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe
-          your stay with at least <b className="reviews__text-amount">{COMMENT_LENGTH} characters</b>.
+          your stay with at least <b className="reviews__text-amount">{MIN_COMMENT_LENGTH} characters</b>.
         </p>
         <button className="reviews__submit form__submit button" type="submit" disabled={ isDisabled }>Submit</button>
       </div>

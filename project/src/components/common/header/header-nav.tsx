@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
+import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state/use-global-state';
 import {AuthorizationStatus} from '../../../constants';
 import {getAuthStatus} from '../../../store/user-process/user-process.selectors';
 import {logoutAction} from '../../../store/api-actions';

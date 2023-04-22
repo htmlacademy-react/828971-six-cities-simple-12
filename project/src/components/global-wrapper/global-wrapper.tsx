@@ -1,13 +1,12 @@
-
 import NotLoaded from '../../components/common/not-loaded/not-loaded';
 import {PropsWithChildren} from 'react';
 import Header from '../../components/common/header/header';
-import {useAppSelector} from '../../hooks/use-global-state';
+import {useAppSelector} from '../../hooks/use-global-state/use-global-state';
 import {getError} from '../../store/loading-data/loading-data.selectors';
 
-type GWProps = PropsWithChildren<{classes: string}>;
+type GlobalWrapperProps = PropsWithChildren<{classes: string}>;
 
-export const GlobalWrapper = ({children, classes}: GWProps): JSX.Element => {
+export const GlobalWrapper = ({children, classes}: GlobalWrapperProps): JSX.Element => {
   const error = useAppSelector(getError);
   return (
     <div className={ classes }>

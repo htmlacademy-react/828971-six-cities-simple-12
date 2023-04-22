@@ -2,7 +2,7 @@ import {SORTING_OPTIONS} from '../../../constants';
 import {useState} from 'react';
 import cn from 'classnames';
 import {Option} from '../../../types/option';
-import {useAppDispatch} from '../../../hooks/use-global-state';
+import {useAppDispatch} from '../../../hooks/use-global-state/use-global-state';
 import {outputData} from '../../../store/output-data/output-data.slice';
 
 function SortingOffers() : JSX.Element{

@@ -1,4 +1,12 @@
-import {ACTIVE_ICON, DEFAULT_ICON, MONTH_LEGEND, MONTH_ORDER, SORTING_OPTIONS, YEAR_ORDER} from '../constants';
+import {
+  ACTIVE_ICON, DATE_YMD_ORDER,
+  DEFAULT_ICON, MAX_COMMENT_LENGTH,
+  MAX_FEEDBACKS_QUANTITY, MIN_COMMENT_LENGTH,
+  MONTH_LEGEND,
+  MONTH_ORDER,
+  SORTING_OPTIONS,
+  YEAR_ORDER
+} from '../constants';
 import {Option} from '../types/option';
 import {Offer} from '../types/offer';
 import L, {Marker} from 'leaflet';
@@ -34,12 +42,16 @@ export function createMarkers(offers: Offer[], activeOffer: null | Offer): Marke
   return markers;
 }
 
+export function validateFeedback(rating: number, comment: string): boolean {
+  return (rating > 0 && comment.length > MIN_COMMENT_LENGTH && comment.length < MAX_COMMENT_LENGTH);
+}
+
 function getDateForSorting(date: string): Date {
   return new Date(date);
 }
 
 export function getDateForData(date: string): string {
-  return date.split('T', 1).toString();
+  return date.split('T')[DATE_YMD_ORDER].toString();
 }
 
 export function getDateForDescription(date: string): string {
@@ -61,6 +73,6 @@ export function getSortedFeedbacks(feedbacks: Feedback[]): Feedback[] {
     } else {
       return 0;
     }
-  });
+  }).slice(0, MAX_FEEDBACKS_QUANTITY);
 }
 

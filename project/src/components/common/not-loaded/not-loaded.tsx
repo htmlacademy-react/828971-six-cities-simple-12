@@ -1,4 +1,4 @@
-import classes from './notloaded.module.css';
+import classes from './not-loaded.module.css';
 import {store} from '../../../store';
 import {loadingData} from '../../../store/loading-data/loading-data.slice';
 
