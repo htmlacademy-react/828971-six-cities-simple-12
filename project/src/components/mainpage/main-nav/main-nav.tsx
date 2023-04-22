@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state';
+import {useAppDispatch, useAppSelector} from '../../../hooks/use-global-state/use-global-state';
 import {CITIES} from '../../../constants';
 import {outputData} from '../../../store/output-data/output-data.slice';
 import {getCity} from '../../../store/output-data/output-data.selectors';

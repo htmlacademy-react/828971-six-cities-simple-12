@@ -1,10 +1,10 @@
-import {useAppSelector} from '../../../hooks/use-global-state';
+import {useAppSelector} from '../../../hooks/use-global-state/use-global-state';
 import MainNav from '../main-nav/main-nav';
 import SortingOffers from '../sorting-offers/sorting-offers';
 import OffersList from '../../common/offer-stuff/offers-list/offers-list';
 import {Map} from '../../common/map/map';
 import {Offer} from '../../../types/offer';
-import {getFilteredOffers, getSortedOffers} from '../../../utils';
+import {getFilteredOffers, getSortedOffers} from '../../../services/utils';
 import {getCity, getSortType} from '../../../store/output-data/output-data.selectors';
 
 type MainFilledProps = {

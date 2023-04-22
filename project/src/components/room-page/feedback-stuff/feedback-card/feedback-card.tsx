@@ -1,12 +1,15 @@
 import RatingStars from '../../../common/rating-stars/rating-stars';
 import React from 'react';
 import {Feedback} from '../../../../types/feedback';
+import {getDateForData, getDateForDescription} from '../../../../services/utils';
 
 type FeedbackCardProps = {
   feedback: Feedback;
 }
 
 function FeedbackCard( { feedback } : FeedbackCardProps ): JSX.Element {
+  const currentDate = getDateForData(feedback.date);
+
   return(
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -28,7 +31,7 @@ function FeedbackCard( { feedback } : FeedbackCardProps ): JSX.Element {
         <p className="reviews__text">
           { feedback.comment }
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime={currentDate}>{ getDateForDescription(currentDate) }</time>
       </div>
     </li>
   );

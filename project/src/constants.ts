@@ -1,6 +1,7 @@
 import L, {Icon} from 'leaflet';
 import {Offer} from './types/offer';
 import {Option} from './types/option';
+import {RatingLegend} from './types/rating-legend';
 
 export const URL_API = 'https://12.react.pages.academy/six-cities-simple';
 export const REQUEST_TIMEOUT = 5000;
@@ -10,12 +11,13 @@ export enum APIRoute {
   Feedback = '/comments',
   Login = '/login',
   Logout = '/logout',
+}
 
-}export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
+export const AUTH_TOKEN_KEY_NAME = '6-cities-token';
 
 export const TIMEOUT_SHOW_ERROR = 2000;
 
-export const CITIES: readonly string[] = [
+export const CITIES: string[] = [
   'Paris',
   'Cologne',
   'Brussels',
@@ -33,8 +35,15 @@ export enum AuthorizationStatus {
 export enum NameSpace {
   Data = 'DATA',
   User = 'USER',
-  OutputData = 'OUTPUT_SETTINGS'
+  OutputData = 'OUTPUT_SETTINGS',
 }
+
+export enum IsDataLoading {
+  Offers = 'OFFERS',
+  SingleOffer = 'SINGLE_OFFER',
+  NoLoading = 'NO_LOADING',
+}
+
 
 export const DEFAULT_CITY: string = CITIES[0];
 
@@ -78,4 +87,41 @@ export const ACTIVE_ICON: Icon = L.icon({
   iconAnchor: [15, 40],
 });
 
+export const RATING_LEGEND: RatingLegend[] = [
+  {
+    title: 'perfect',
+    rating: 5
+  },
+  {
+    title: 'good',
+    rating: 4
+  },
+  {
+    title: 'not bad',
+    rating: 3
+  },
+  {
+    title: 'badly',
+    rating: 2
+  },
+  {
+    title: 'terribly',
+    rating: 1
+  }
+];
+
+export const MONTH_LEGEND: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 export const MAP_HEIGHT = '500px';
+
+export const MIN_COMMENT_LENGTH = 50;
+
+export const MAX_COMMENT_LENGTH = 300;
+
+export const MAX_FEEDBACKS_QUANTITY = 10;
+
+export const DATE_YMD_ORDER = 0;
+
+export const YEAR_ORDER = 0;
+
+export const MONTH_ORDER = 1;

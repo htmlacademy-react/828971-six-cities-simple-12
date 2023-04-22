@@ -9,7 +9,7 @@ function NotFound(): JSX.Element {
         <section className={ classes.NotFound }>
           <div>
             <h1 className="login__title">Nothing is around...</h1>
-            <p>Maybe you should return to <Link to={AppRoutes.Root} className={ classes.NotFoundLink }>main page?</Link></p>
+            <p>Maybe you should return to <Link to={AppRoutes.Root} className={ classes.NotFoundLink }>main page</Link>?</p>
           </div>
           <img className={classes.img} src="img/404.svg" alt=""/>
         </section>

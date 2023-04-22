@@ -1,6 +1,6 @@
 import { store } from '../store';
 import {Offer} from './offer';
-import {AuthorizationStatus} from '../services/auth-data';
+import {AuthorizationStatus, IsDataLoading} from '../constants';
 import {Feedback} from './feedback';
 
 export type State = ReturnType<typeof store.getState>;
@@ -16,11 +16,12 @@ export type InitialState = {
   activeOffer: null | Offer;
   authorizationStatus: AuthorizationStatus;
   email: string;
-  isDataLoading: boolean;
+  isDataLoading: IsDataLoading;
+  isSending: boolean;
   error: string | null;
 };
 
-export type UserProcess = Pick<InitialState, 'authorizationStatus'>;
+export type UserProcess = Pick<InitialState, 'authorizationStatus' | 'isSending'>;
 
 export type OutputData = Pick<InitialState, 'city' | 'sortType' | 'activeOffer'>;
 

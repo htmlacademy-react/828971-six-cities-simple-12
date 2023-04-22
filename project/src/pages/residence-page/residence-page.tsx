@@ -6,16 +6,15 @@ import RoomInfo from '../../components/room-page/room-info/room-info';
 import HostBlock from '../../components/room-page/host-block/host-block';
 import OffersList from '../../components/common/offer-stuff/offers-list/offers-list';
 import { Map } from '../../components/common/map/map';
-import GlobalWrapper from '../../components/globalWrapper/globalWrapper';
+import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 import {useParams} from 'react-router-dom';
-import {getNearby, getProperty, getFeedback} from '../../store/loading-data/loading-data.selectors';
-import {useAppDispatch, useAppSelector} from '../../hooks/use-global-state';
+import {getNearby, getProperty, getFeedback, getIsDataLoading} from '../../store/loading-data/loading-data.selectors';
+import {useAppDispatch, useAppSelector} from '../../hooks/use-global-state/use-global-state';
 import {fetchNearby, fetchProperty, fetchFeedback} from '../../store/api-actions';
 import { useNavigate } from 'react-router-dom';
 import {AppRoutes} from '../../routes';
 import {getAuthStatus} from '../../store/user-process/user-process.selectors';
-import {AuthorizationStatus} from '../../constants';
-// import {outputData} from '../../store/output-data/output-data.slice';
+import {AuthorizationStatus, IsDataLoading} from '../../constants';
 import {Offer} from '../../types/offer';
 import {outputData} from '../../store/output-data/output-data.slice';
 import {store} from '../../store';
@@ -29,7 +28,7 @@ function Residence(): JSX.Element {
   const comments = useAppSelector(getFeedback);
   const authorizationStatus = useAppSelector(getAuthStatus);
   const navigate = useNavigate();
-
+  const isDataLoading = useAppSelector(getIsDataLoading);
 
   const getData = async(dataID: string) => {
     const selectedProperty = await dispatch(fetchProperty(dataID));
@@ -49,6 +48,12 @@ function Residence(): JSX.Element {
       getData(id);
     }
   }, [id]);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || (isDataLoading === IsDataLoading.SingleOffer)) {
+    return (
+      <Loader/>
+    );
+  }
 
   return (
     property

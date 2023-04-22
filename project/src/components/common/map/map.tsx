@@ -3,12 +3,11 @@ import {Marker} from 'leaflet';
 import cn from 'classnames';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../../hooks/use-map/use-map';
-// import {ACTIVE_ICON, DEFAULT_ICON, MAP_HEIGHT} from '../../constants';
 import {MAP_HEIGHT} from '../../../constants';
 import {Location} from '../../../types/location';
 import {Offer} from '../../../types/offer';
-import {useAppSelector} from '../../../hooks/use-global-state';
-import {createMarkers} from '../../../utils';
+import {useAppSelector} from '../../../hooks/use-global-state/use-global-state';
+import {createMarkers} from '../../../services/utils';
 import {getActiveOffer} from '../../../store/output-data/output-data.selectors';
 
 type MapProps = {
