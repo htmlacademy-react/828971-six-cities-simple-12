@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef} from 'react';
+import {FC, useEffect, useRef} from 'react';
 import {Marker} from 'leaflet';
 import cn from 'classnames';
 import 'leaflet/dist/leaflet.css';

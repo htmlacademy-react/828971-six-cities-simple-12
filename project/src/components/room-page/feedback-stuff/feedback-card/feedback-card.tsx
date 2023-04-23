@@ -1,5 +1,4 @@
 import RatingStars from '../../../common/rating-stars/rating-stars';
-import React from 'react';
 import {Feedback} from '../../../../types/feedback';
 import {getDateForData, getDateForDescription} from '../../../../services/utils';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import CurrentOffer from '../offer-card/offer-card';
 import {Offer} from '../../../../types/offer';
 import {useAppDispatch} from '../../../../hooks/use-global-state/use-global-state';

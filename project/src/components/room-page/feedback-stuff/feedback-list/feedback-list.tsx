@@ -1,4 +1,3 @@
-import React from 'react';
 import {Feedback} from '../../../../types/feedback';
 import FeedbackCard from '../feedback-card/feedback-card';
 import {getSortedFeedbacks} from '../../../../services/utils';

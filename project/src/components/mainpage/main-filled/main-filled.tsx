@@ -6,6 +6,7 @@ import {Map} from '../../common/map/map';
 import {Offer} from '../../../types/offer';
 import {getFilteredOffers, getSortedOffers} from '../../../services/utils';
 import {getCity, getSortType} from '../../../store/output-data/output-data.selectors';
+import {MAP_HEIGHT} from '../../../constants';
 
 type MainFilledProps = {
   offers: Offer[];
@@ -22,7 +23,7 @@ function MainFilled({ offers }: MainFilledProps): JSX.Element {
       <MainNav/>
       <div className="cities">
         <div className="cities__places-container container">
-          <section className="cities__places places">
+          <section className="cities__places places" style={{maxHeight: MAP_HEIGHT}}>
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{currentOffers.length} places to stay in {city}</b>
             <SortingOffers/>

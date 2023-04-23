@@ -1,5 +1,3 @@
-import React from 'react';
-
 type RatingStarsProps = {
   rating: number;
   specifyClassWord: string;
