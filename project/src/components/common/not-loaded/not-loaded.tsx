@@ -6,7 +6,6 @@ type NotLoadedProps = {
   error: string;
 }
 
-
 function NotLoaded({error}: NotLoadedProps): JSX.Element {
   const onClickHandler = (): void => {
     store.dispatch(loadingData.actions.setError(null));

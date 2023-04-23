@@ -1,4 +1,3 @@
-import React from 'react';
 import {Offer} from '../../../types/offer';
 import RatingStars from '../../common/rating-stars/rating-stars';
 

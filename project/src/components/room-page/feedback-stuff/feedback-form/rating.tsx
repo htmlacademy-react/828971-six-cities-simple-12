@@ -1,6 +1,6 @@
 import {RATING_LEGEND} from '../../../../constants';
 import {RatingLegend} from '../../../../types/rating-legend';
-import React, {ChangeEventHandler, Fragment, MutableRefObject} from 'react';
+import {ChangeEventHandler, Fragment, MutableRefObject} from 'react';
 
 type RatingProps = {
   ratingRef: MutableRefObject<HTMLInputElement[]>;

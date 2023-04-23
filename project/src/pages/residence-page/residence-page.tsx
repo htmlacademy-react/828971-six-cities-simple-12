@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import FeedbackForm from '../../components/room-page/feedback-stuff/feedback-form/feedback-form';
 import FeedbacksList from '../../components/room-page/feedback-stuff/feedback-list/feedback-list';
 import RoomGallery from '../../components/room-page/room-gallery/room-gallery';

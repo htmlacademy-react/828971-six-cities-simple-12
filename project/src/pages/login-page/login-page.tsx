@@ -56,7 +56,7 @@ function Login(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#" style={{pointerEvents: 'none', backgroundColor: '#7e7e7e'}}>
+              <a className="locations__item-link" href="#" style={{pointerEvents: 'none'}}>
                 <span>Amsterdam</span>
               </a>
             </div>

@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useRef, useState} from 'react';
+import {FormEvent, useEffect, useRef, useState} from 'react';
 import {fetchFeedback, sendFeedbackAction} from '../../../../store/api-actions';
 import {FeedbackData} from '../../../../types/feedback';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/use-global-state/use-global-state';
