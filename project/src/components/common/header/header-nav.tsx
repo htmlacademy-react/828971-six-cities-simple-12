@@ -4,7 +4,7 @@ import {AuthorizationStatus} from '../../../constants';
 import {getAuthStatus} from '../../../store/user-process/user-process.selectors';
 import {logoutAction} from '../../../store/api-actions';
 import {AppRoutes} from '../../../routes';
-import {getMail} from '../../../store/loading-data/loading-data.selectors';
+import {getMail} from '../../../store/user-process/user-process.selectors';
 
 function HeaderNav() {
   const authorizationStatus = useAppSelector(getAuthStatus);
@@ -13,7 +13,7 @@ function HeaderNav() {
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
   const onClickLogoutHandler = () => {
-    (async () => await dispatch(logoutAction()))();
+    dispatch(logoutAction());
   };
 
   return (

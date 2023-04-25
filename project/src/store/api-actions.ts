@@ -71,26 +71,27 @@ export const fetchFeedback = createAsyncThunk<Feedback[], string, {
   },
 );
 
-export const fetchEmail = createAsyncThunk<string, undefined, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'data/fetchEmail',
-  async (_arg, {extra: api}): Promise<string> => {
-    const {data} = await api.get<UserData>(APIRoute.Login);
-    return data.email;
-  },
-);
+// export const fetchEmail = createAsyncThunk<string, undefined, {
+//   dispatch: AppDispatch;
+//   state: State;
+//   extra: AxiosInstance;
+// }>(
+//   'data/fetchEmail',
+//   async (_arg, {extra: api}): Promise<string> => {
+//     const {data} = await api.get<UserData>(APIRoute.Login);
+//     return data.email;
+//   },
+// );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData['email'], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
   async (_arg, {extra: api}) => {
-    await api.get(APIRoute.Login);
+    const {data} = await api.get<UserData>(APIRoute.Login);
+    return data.email;
   }
 );
 

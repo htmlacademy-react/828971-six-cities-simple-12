@@ -1,5 +1,5 @@
 import {
-  ACTIVE_ICON, DATE_YMD_ORDER,
+  ACTIVE_ICON, CITIES, DATE_YMD_ORDER,
   DEFAULT_ICON, MAX_COMMENT_LENGTH,
   MAX_FEEDBACKS_QUANTITY, MIN_COMMENT_LENGTH,
   MONTH_LEGEND,
@@ -8,7 +8,7 @@ import {
   YEAR_ORDER
 } from '../constants';
 import {Option} from '../types/option';
-import {Offer} from '../types/offer';
+import {City, Offer} from '../types/offer';
 import L, {Marker} from 'leaflet';
 import {Feedback} from '../types/feedback';
 
@@ -76,3 +76,7 @@ export function getSortedFeedbacks(feedbacks: Feedback[]): Feedback[] {
   }).slice(0, MAX_FEEDBACKS_QUANTITY);
 }
 
+export function getRandomCity(cityQuantity: number): City['name'] {
+  const randomArrayIndex = Math.floor( Math.random() * ( 1 + cityQuantity) );
+  return CITIES[randomArrayIndex];
+}

@@ -1,11 +1,14 @@
 import {useAppDispatch} from '../../hooks/use-global-state/use-global-state';
 import {FormEvent, useRef} from 'react';
-import {fetchEmail, loginAction} from '../../store/api-actions';
+import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
 import {AppRoutes} from '../../routes';
 import {useNavigate} from 'react-router';
 import GlobalWrapper from '../../components/global-wrapper/global-wrapper';
 import {useDisabling} from '../../hooks/use-disabling/use-disabling';
+import RedirectButton from '../../components/login-page/redirect-button/redirect-button';
+import {getRandomCity} from '../../services/utils';
+import {CITIES} from '../../constants';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -13,15 +16,14 @@ function Login(): JSX.Element {
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
   const isDisabled = useDisabling();
+  const city = getRandomCity(CITIES.length);
 
   const onSubmit = async (authData: AuthData, form: HTMLFormElement) => {
     form.setAttribute('disabled', 'true');
     await dispatch(loginAction(authData));
-    await dispatch(fetchEmail());
     form.setAttribute('disabled', 'false');
     navigate(AppRoutes.Root);
   };
-
 
   const onSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -56,9 +58,7 @@ function Login(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#" style={{pointerEvents: 'none'}}>
-                <span>Amsterdam</span>
-              </a>
+              <RedirectButton city={city}/>
             </div>
           </section>
         </div>
