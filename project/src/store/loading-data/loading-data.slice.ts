@@ -1,6 +1,6 @@
 import {LoadingData} from '../../types/state';
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchEmail, fetchFeedback, fetchNearby, fetchOffers, fetchProperty} from '../api-actions';
+import {fetchFeedback, fetchNearby, fetchOffers, fetchProperty} from '../api-actions';
 import {IsDataLoading, NameSpace} from '../../constants';
 import {PayloadAction} from '@reduxjs/toolkit/dist/createAction';
 
@@ -11,7 +11,6 @@ const initialState: LoadingData = {
   feedback: [],
   isDataLoading: IsDataLoading.NoLoading,
   error: null,
-  email: '',
 };
 
 export const loadingData = createSlice({
@@ -27,12 +26,6 @@ export const loadingData = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchEmail.fulfilled, (state, action) => {
-        state.email = action.payload;
-      })
-      .addCase(fetchEmail.rejected, (state) => {
-        state.email = '';
-      })
       .addCase(fetchOffers.pending, (state) => {
         state.isDataLoading = IsDataLoading.Offers;
         state.error = null;

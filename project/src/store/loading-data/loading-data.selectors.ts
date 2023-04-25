@@ -3,7 +3,6 @@ import {IsDataLoading, NameSpace} from '../../constants';
 import {Offer} from '../../types/offer';
 import {Feedback} from '../../types/feedback';
 
-export const getMail = (state: State): string => state[NameSpace.Data].email;
 export const getOffers = (state: State): Offer[] => state[NameSpace.Data].offers;
 export const getProperty = (state: State): Offer | null => state[NameSpace.Data].property;
 export const getNearby = (state: State): Offer[] => state[NameSpace.Data].nearby;

@@ -1,6 +1,6 @@
 import {useAppDispatch} from '../../hooks/use-global-state/use-global-state';
 import {FormEvent, useRef} from 'react';
-import {fetchEmail, loginAction} from '../../store/api-actions';
+import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
 import {AppRoutes} from '../../routes';
 import {useNavigate} from 'react-router';
@@ -17,11 +17,9 @@ function Login(): JSX.Element {
   const onSubmit = async (authData: AuthData, form: HTMLFormElement) => {
     form.setAttribute('disabled', 'true');
     await dispatch(loginAction(authData));
-    await dispatch(fetchEmail());
     form.setAttribute('disabled', 'false');
     navigate(AppRoutes.Root);
   };
-
 
   const onSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

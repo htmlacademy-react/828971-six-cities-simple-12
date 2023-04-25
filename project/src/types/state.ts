@@ -2,6 +2,7 @@ import { store } from '../store';
 import {Offer} from './offer';
 import {AuthorizationStatus, IsDataLoading} from '../constants';
 import {Feedback} from './feedback';
+import {UserData} from './user-data';
 
 export type State = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
@@ -15,13 +16,13 @@ export type InitialState = {
   feedback: Feedback[];
   activeOffer: null | Offer;
   authorizationStatus: AuthorizationStatus;
-  email: string;
+  email: UserData['email'];
   isDataLoading: IsDataLoading;
   isSending: boolean;
   error: string | null;
 };
 
-export type UserProcess = Pick<InitialState, 'authorizationStatus' | 'isSending'>;
+export type UserProcess = Pick<InitialState, 'authorizationStatus' | 'isSending' | 'email'>;
 
 export type OutputData = Pick<InitialState, 'city' | 'sortType' | 'activeOffer'>;
 
